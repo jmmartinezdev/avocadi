@@ -1,0 +1,496 @@
+{
+  "meals": [
+    {
+      "id": "10",
+      "name": "Almuerzos",
+      "dishCategories": [
+        {
+          "id": "10-0",
+          "name": "Legumbre + verduras",
+          "dishes": [
+            {
+              "id": "10-0-0",
+              "name": "Lentejas/ Puchero / Habichuelas / guisadas con verduras"
+            },
+            {
+              "id": "10-0-1",
+              "name": "Hélices de lentejas/ guisantes / garbanzos con boloñesa casera"
+            },
+            {
+              "id": "10-0-2",
+              "name": "Ensaladas de garbanzos/ lentejas / alubias con tomate, pimiento, aguacate, huevo duro y atún"
+            },
+            {
+              "id": "10-0-3",
+              "name": "Judías verdes salteadas con langostinos y huevo a la plancha"
+            },
+            {
+              "id": "10-0-4",
+              "name": "Garbanzos salteados con tomates cherry, queso feta y atún en conserva al natural"
+            },
+            {
+              "id": "10-0-5",
+              "name": "Wrap con tortita de trigo integral, hummus, calabacín y pimiento asado, rúcula y aguacate"
+            }
+          ]
+        },
+        {
+          "id": "10-1",
+          "name": "Pescado blanco + verduras",
+          "dishes": [
+            {
+              "id": "10-1-0",
+              "name": "Bacalao pisto de verduras"
+            },
+            {
+              "id": "10-1-1",
+              "name": "Merluza con almejas y gambas acompañada de menestra de verduras"
+            },
+            {
+              "id": "10-1-2",
+              "name": "Dorada al horno con salsa verde y pimientos asados"
+            },
+            {
+              "id": "10-1-3",
+              "name": "Lubina a la plancha con espárragos verdes a la plancha y patata al horno"
+            },
+            {
+              "id": "10-1-4",
+              "name": "Lenguado en papillote (envuelto en papel de aluminio con zanahoria, pimientos en tiras y limón)"
+            },
+            {
+              "id": "10-1-5",
+              "name": "Brocheta de rosada, tomates cherry y calabacín (todo en taquitos y a la plancha)"
+            },
+            {
+              "id": "10-1-6",
+              "name": "Rosada a la plancha con verduras asadas (calabacín, tomates cherry y champiñones) y patata al horno"
+            }
+          ]
+        },
+        {
+          "id": "10-2",
+          "name": "Huevo + verduras",
+          "dishes": [
+            {
+              "id": "10-2-0",
+              "name": "Revuelto de setas y calabacín con langostinos"
+            },
+            {
+              "id": "10-2-1",
+              "name": "Huevos a la plancha con pisto de verduras"
+            },
+            {
+              "id": "10-2-2",
+              "name": "Tortilla de patata y coliflor + ensalada"
+            },
+            {
+              "id": "10-2-3",
+              "name": "Pastel de brócoli, huevo, jamón y mozzarella fresca para gratinar"
+            },
+            {
+              "id": "10-2-4",
+              "name": "Huevos a la plancha con espárragos verdes a la plancha y jamón serrano"
+            },
+            {
+              "id": "10-2-5",
+              "name": "Rollito de tortilla de espinacas con mozzarella y jamón cocido"
+            }
+          ]
+        },
+        {
+          "id": "10-3",
+          "name": "Arroz/ pasta /patata /quinoa + verduras + proteina animal",
+          "comment": "Idealmente acompañar con ensalada de primero.",
+          "dishes": [
+            {
+              "id": "10-3-0",
+              "name": "Quinoa salteada con zanahoria, pimiento, calabacín y champiñones con tiras de pollo"
+            },
+            {
+              "id": "10-3-1",
+              "name": "Arroz con verduras y pollo/pescado"
+            },
+            {
+              "id": "10-3-2",
+              "name": "Quinoa con pollo al curry"
+            },
+            {
+              "id": "10-3-3",
+              "name": "Noodle de arroz con verduras (pimientos de colores, cebolla) y tiras de pollo"
+            },
+            {
+              "id": "10-3-4",
+              "name": "Ensalada de quinoa con tomate, aguacate, pepino y atún en conserva"
+            },
+            {
+              "id": "10-3-5",
+              "name": "Rissoto ligero (sin nata, solo un poco de parmesano) con setas y tiras de cinta de lomo"
+            },
+            {
+              "id": "10-3-6",
+              "name": "Quinoa salteada con espárragos, champiñones y langostinos"
+            },
+            {
+              "id": "10-3-7",
+              "name": "Poke de quinoa, edamames, queso feta, salmón ahumado y aguacate"
+            },
+            {
+              "id": "10-3-8",
+              "name": "Guiso de patata con choco/magro/marisco/bacalao"
+            },
+            {
+              "id": "10-3-9",
+              "name": "Pasta integral con coliflor, pollo y un poco de queso azul"
+            },
+            {
+              "id": "10-3-10",
+              "name": "Tortilla de patata (cocida en el micro) + pimientos asados con cebolla"
+            }
+          ]
+        },
+        {
+          "id": "10-4",
+          "name": "Carne magra + verduras",
+          "dishes": [
+            {
+              "id": "10-4-0",
+              "name": "Estofado de verduras con carne de pollo/ cerdo"
+            },
+            {
+              "id": "10-4-1",
+              "name": "Wok de verduras con tiras de pollo (opcional: añadir salsa de soja)"
+            },
+            {
+              "id": "10-4-2",
+              "name": "Berenjenas rellenas con carne picada, tomate, la carne de la berenjena, mozzarella fresca y orégano"
+            },
+            {
+              "id": "10-4-3",
+              "name": "Pollo relleno con espinacas y mozzarella con arroz blanco hervido"
+            },
+            {
+              "id": "10-4-4",
+              "name": "Tiras de pimientos de colores salteadas con tiras de cinta de lomo de cerdo"
+            },
+            {
+              "id": "10-4-5",
+              "name": "Cinta de lomo a la plancha con salsa de zanahoria (zanahoria y cebolla) y guisantes salteados"
+            }
+          ]
+        },
+        {
+          "id": "10-5",
+          "name": "Pescado azul + verduras",
+          "dishes": [
+            {
+              "id": "10-5-0",
+              "name": "Wok de verduras (zanahoria, calabacín, cebolla, pimientos) con salmón en taquitos (opcional: añadir salsa de soja)"
+            },
+            {
+              "id": "10-5-1",
+              "name": "Crema de verduras + Lomo de atún a la plancha con patata al horno"
+            },
+            {
+              "id": "10-5-2",
+              "name": "Salmón a la naranja y espárragos verdes a la plancha"
+            },
+            {
+              "id": "10-5-3",
+              "name": "Sardinas al horno con pimientos asados aliñados con cebolla morada"
+            },
+            {
+              "id": "10-5-4",
+              "name": "Boquerones con ajito y perejil al horno acompañados con espárragos blancos con vinagreta de pimiento rojo, pimiento verde, cebolla."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Cenas",
+      "dishCategories": [
+        {
+          "id": "20-0",
+          "name": "Verduras + huevo",
+          "dishes": [
+            {
+              "id": "20-0-0",
+              "name": "Tortilla francesa + queso fresco de cabra"
+            },
+            {
+              "id": "20-0-1",
+              "name": "Tortilla rellena de espinacas frescas, jamón cocido y queso mozzarella"
+            },
+            {
+              "id": "20-0-2",
+              "name": "Fajita integral con huevo plancha, tomate en rodajas y aguacate"
+            },
+            {
+              "id": "20-0-3",
+              "name": "Pastel de brócoli con huevo, jamón cocido y gratinado con mozzarella fresca"
+            },
+            {
+              "id": "20-0-4",
+              "name": "Revuelto de setas y jamón"
+            },
+            {
+              "id": "20-0-5",
+              "name": "Huevos rotos con alcachofas y lascas de jamón"
+            },
+            {
+              "id": "20-0-6",
+              "name": "Judías verdes con tomate, huevo duro y atún en conserva al natural"
+            }
+          ]
+        },
+        {
+          "id": "20-1",
+          "name": "Verduras + embutido de calidad",
+          "dishes": [
+            {
+              "id": "20-1-0",
+              "name": "Alcachofas salteadas con ajitos y jamón serrano"
+            },
+            {
+              "id": "20-1-1",
+              "name": "Rollitos de espárragos blancos con jamón cocido o pavo cocido"
+            },
+            {
+              "id": "20-1-2",
+              "name": "Champiñones rellenos con jamón serrano y gratinados con mozzarella"
+            },
+            {
+              "id": "20-1-3",
+              "name": "Verduras a la plancha (berenjena, calabacín, pimiento) + jamón serrano"
+            },
+            {
+              "id": "20-1-4",
+              "name": "Coliflor rehogado con ajito y salteado con jamón"
+            },
+            {
+              "id": "20-1-5",
+              "name": "Base de pizza de semillas con tomate, mozzarella, champiñones, jamón cocido y orégano."
+            }
+          ]
+        },
+        {
+          "id": "20-2",
+          "name": "Verduras + carne magra",
+          "dishes": [
+            {
+              "id": "20-2-0",
+              "name": "Crema de verduras con queso feta y pinchitos de pollo salteados"
+            },
+            {
+              "id": "20-2-1",
+              "name": "Sopa de picadillo con huevo duro y jamón serrano con pollo."
+            },
+            {
+              "id": "20-2-2",
+              "name": "Ensalada de canónigos, tomate, aguacate y queso fresco con alitas de pollo en la freidora de aire"
+            },
+            {
+              "id": "20-2-3",
+              "name": "Cogollos aliñados + Brochetas de pollo con verduras (tomate, pimiento)"
+            },
+            {
+              "id": "20-2-4",
+              "name": "Crema de calabacín y zanahoria + Tosta integral de jamón serrano y aguacate"
+            }
+          ]
+        },
+        {
+          "id": "20-3",
+          "name": "Verduras + conservas de pescado",
+          "dishes": [
+            {
+              "id": "20-3-0",
+              "name": "Ensalada de pimientos asados con cebolla morada y melva en conserva"
+            },
+            {
+              "id": "20-3-1",
+              "name": "Ensalada de tomate, aguacate, queso fresco y atún en conserva al natural"
+            },
+            {
+              "id": "20-3-2",
+              "name": "Berenjena/ Calabacín rellena de atún, tomate y mozzarella fresca"
+            },
+            {
+              "id": "20-3-3",
+              "name": "Ensalada de pimientos asados con cebolla morada y melva en conserva"
+            },
+            {
+              "id": "20-3-4",
+              "name": "Tosta Integral con tomate, aguacate y sardina en conserva"
+            }
+          ]
+        },
+        {
+          "id": "20-4",
+          "name": "Verduras + producto del mar",
+          "dishes": [
+            {
+              "id": "20-4-0",
+              "name": "Gambas y almejas salteadas con ajo + Ensalada de rúcula con tomate cherry y queso fresco"
+            },
+            {
+              "id": "20-4-1",
+              "name": "Pulpo con base de puré de coliflor"
+            },
+            {
+              "id": "20-4-2",
+              "name": "Crema de verduras y mejillones al vapor al limón"
+            },
+            {
+              "id": "20-4-3",
+              "name": "Tortitas de maiz con guacamole y gambas"
+            },
+            {
+              "id": "20-4-4",
+              "name": "Chipirones a la plancha con ensalada de lechuga, mozzarella y miel y mostaza"
+            },
+            {
+              "id": "20-4-5",
+              "name": "Ensalada de tomate, pimiento, mejillones, pulpo, gambas"
+            }
+          ]
+        },
+        {
+          "id": "20-5",
+          "name": "Verduras + carne",
+          "dishes": [
+            {
+              "id": "20-5-0",
+              "name": "Carne a la brasa acompañada de verduras crudas (ensaladas) o cocinadas (menestra, salteado,...)"
+            },
+            {
+              "id": "20-5-1",
+              "name": "Cinta de lomo a la plancha con salsa de setas"
+            },
+            {
+              "id": "20-5-2",
+              "name": "Hamburguesa de calidad de pollo con guarnición de lechuga, tomate y queso fresco"
+            },
+            {
+              "id": "20-5-3",
+              "name": "Ensalada de canónigos, tomate, zanahoria, aguacate, pollo y manzana"
+            },
+            {
+              "id": "20-5-4",
+              "name": "Calabacín rehogado con cebolla y taquitos de pollo"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "days": [
+    {
+      "id": "1-1",
+      "day": 1,
+      "name": "Lunes",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-0"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-0"
+        }
+      ]
+    },
+    {
+      "id": "1-2",
+      "day": 2,
+      "name": "Martes",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-2"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-2"
+        }
+      ]
+    },
+    {
+      "id": "1-3",
+      "day": 3,
+      "name": "Miércoles",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-3"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-3"
+        }
+      ]
+    },
+    {
+      "id": "1-4",
+      "day": 4,
+      "name": "Jueves",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-4"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-0"
+        }
+      ]
+    },
+    {
+      "id": "1-5",
+      "day": 5,
+      "name": "Viernes",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-0"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-4"
+        }
+      ]
+    },
+    {
+      "id": "1-6",
+      "day": 6,
+      "name": "Sábado",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-5"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-5"
+        }
+      ]
+    },
+    {
+      "id": "1-7",
+      "day": 7,
+      "name": "Domingo",
+      "meals": [
+        {
+          "mealId": "10",
+          "dishCategoryId": "10-4"
+        },
+        {
+          "mealId": "20",
+          "dishCategoryId": "20-1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Avocadi App Icon — Concept 01 "Half & Pit" — Layer 2 of 2 (Foreground) -->
+  <!-- Pit only. Kept as a single flat circle so Icon Composer's specular -->
+  <!-- highlight has a clean, uninterrupted round surface to sit on. -->
+  <defs>
+    <radialGradient id="pit" cx="35%" cy="30%" r="80%">
+      <stop offset="0%"  stop-color="#C79362"/>
+      <stop offset="55%" stop-color="#7A4B2A"/>
+      <stop offset="100%" stop-color="#583319"/>
+    </radialGradient>
+  </defs>
+  <circle cx="584" cy="543" r="159" fill="url(#pit)"/>
+</svg>

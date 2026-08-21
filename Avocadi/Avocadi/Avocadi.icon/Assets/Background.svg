@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Avocadi App Icon — Concept 01 "Half & Pit" — Layer 1 of 2 (Background) -->
+  <!-- Skin ring + flesh disc. No shadow/highlight baked in — Icon Composer -->
+  <!-- generates specular, refraction and elevation for each layer itself. -->
+  <defs>
+    <radialGradient id="flesh" cx="38%" cy="30%" r="80%">
+      <stop offset="0%"  stop-color="#A9C85B"/>
+      <stop offset="60%" stop-color="#8BAA3F"/>
+      <stop offset="100%" stop-color="#5C7A2C"/>
+    </radialGradient>
+  </defs>
+  <circle cx="512" cy="512" r="420" fill="#33431B"/>
+  <circle cx="512" cy="512" r="358" fill="url(#flesh)"/>
+</svg>
