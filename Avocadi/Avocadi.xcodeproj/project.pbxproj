@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D12FD5A6303B5ACF008D9116 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12FD5A5303B5ACF008D9116 /* WidgetKit.framework */; };
+		D12FD5A8303B5ACF008D9116 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12FD5A7303B5ACF008D9116 /* SwiftUI.framework */; };
+		D12FD5B5303B5AD0008D9116 /* AvocadiWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D12FD5A3303B5ACF008D9116 /* AvocadiWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		D12FD5B3303B5AD0008D9116 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1E91C903037AB07001E86D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D12FD5A2303B5ACF008D9116;
+			remoteInfo = AvocadiWidgetExtension;
+		};
 		D1E91CA63037AB1B001E86D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1E91C903037AB07001E86D8 /* Project object */;
@@ -16,14 +29,75 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D12FD5B6303B5AD0008D9116 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D12FD5B5303B5AD0008D9116 /* AvocadiWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D12FD5A3303B5ACF008D9116 /* AvocadiWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AvocadiWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D12FD5A5303B5ACF008D9116 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D12FD5A7303B5ACF008D9116 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D1E91C983037AB07001E86D8 /* Avocadi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avocadi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E91CA53037AB1B001E86D8 /* AvocadiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvocadiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D12FD5B9303B5AD0008D9116 /* Exceptions for "AvocadiWidget" folder in "AvocadiWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D12FD5A2303B5ACF008D9116 /* AvocadiWidgetExtension */;
+		};
+		D12FD5BC303B5B1E008D9116 /* Exceptions for "Avocadi" folder in "AvocadiWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/Day.swift,
+				Models/Dish.swift,
+				Models/DishCategory.swift,
+				Models/Meal.swift,
+				Models/Menu.swift,
+				Resources/Menu.json,
+				Services/MenuLoader.swift,
+				ViewModels/DayViewModel.swift,
+				ViewModels/WeekViewModel.swift,
+			);
+			target = D12FD5A2303B5ACF008D9116 /* AvocadiWidgetExtension */;
+		};
+		D12FD5FC303B960B008D9116 /* Exceptions for "Avocadi" folder in "Avocadi" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D1E91C973037AB07001E86D8 /* Avocadi */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D12FD5A9303B5ACF008D9116 /* AvocadiWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D12FD5B9303B5AD0008D9116 /* Exceptions for "AvocadiWidget" folder in "AvocadiWidgetExtension" target */,
+			);
+			path = AvocadiWidget;
+			sourceTree = "<group>";
+		};
 		D1E91C9A3037AB07001E86D8 /* Avocadi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D12FD5FC303B960B008D9116 /* Exceptions for "Avocadi" folder in "Avocadi" target */,
+				D12FD5BC303B5B1E008D9116 /* Exceptions for "Avocadi" folder in "AvocadiWidgetExtension" target */,
+			);
 			path = Avocadi;
 			sourceTree = "<group>";
 		};
@@ -35,6 +109,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D12FD5A0303B5ACF008D9116 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D12FD5A8303B5ACF008D9116 /* SwiftUI.framework in Frameworks */,
+				D12FD5A6303B5ACF008D9116 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1E91C953037AB07001E86D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,11 +135,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D12FD5A4303B5ACF008D9116 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D12FD5A5303B5ACF008D9116 /* WidgetKit.framework */,
+				D12FD5A7303B5ACF008D9116 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D1E91C8F3037AB06001E86D8 = {
 			isa = PBXGroup;
 			children = (
 				D1E91C9A3037AB07001E86D8 /* Avocadi */,
 				D1E91CA83037AB1B001E86D8 /* AvocadiTests */,
+				D12FD5A9303B5ACF008D9116 /* AvocadiWidget */,
+				D12FD5A4303B5ACF008D9116 /* Frameworks */,
 				D1E91C993037AB07001E86D8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +160,7 @@
 			children = (
 				D1E91C983037AB07001E86D8 /* Avocadi.app */,
 				D1E91CA53037AB1B001E86D8 /* AvocadiTests.xctest */,
+				D12FD5A3303B5ACF008D9116 /* AvocadiWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +168,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D12FD5A2303B5ACF008D9116 /* AvocadiWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D12FD5BA303B5AD0008D9116 /* Build configuration list for PBXNativeTarget "AvocadiWidgetExtension" */;
+			buildPhases = (
+				D12FD59F303B5ACF008D9116 /* Sources */,
+				D12FD5A0303B5ACF008D9116 /* Frameworks */,
+				D12FD5A1303B5ACF008D9116 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D12FD5A9303B5ACF008D9116 /* AvocadiWidget */,
+			);
+			name = AvocadiWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AvocadiWidgetExtension;
+			productReference = D12FD5A3303B5ACF008D9116 /* AvocadiWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D1E91C973037AB07001E86D8 /* Avocadi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1E91CB93037AB1B001E86D8 /* Build configuration list for PBXNativeTarget "Avocadi" */;
@@ -80,10 +197,12 @@
 				D1E91C943037AB07001E86D8 /* Sources */,
 				D1E91C953037AB07001E86D8 /* Frameworks */,
 				D1E91C963037AB07001E86D8 /* Resources */,
+				D12FD5B6303B5AD0008D9116 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D12FD5B4303B5AD0008D9116 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D1E91C9A3037AB07001E86D8 /* Avocadi */,
@@ -125,9 +244,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2660;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					D12FD5A2303B5ACF008D9116 = {
+						CreatedOnToolsVersion = 27.0;
+					};
 					D1E91C973037AB07001E86D8 = {
 						CreatedOnToolsVersion = 26.6;
 					};
@@ -153,11 +275,19 @@
 			targets = (
 				D1E91C973037AB07001E86D8 /* Avocadi */,
 				D1E91CA43037AB1B001E86D8 /* AvocadiTests */,
+				D12FD5A2303B5ACF008D9116 /* AvocadiWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D12FD5A1303B5ACF008D9116 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1E91C963037AB07001E86D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +305,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D12FD59F303B5ACF008D9116 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1E91C943037AB07001E86D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +329,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D12FD5B4303B5AD0008D9116 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D12FD5A2303B5ACF008D9116 /* AvocadiWidgetExtension */;
+			targetProxy = D12FD5B3303B5AD0008D9116 /* PBXContainerItemProxy */;
+		};
 		D1E91CA73037AB1B001E86D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D1E91C973037AB07001E86D8 /* Avocadi */;
@@ -200,6 +342,71 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D12FD5B7303B5AD0008D9116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2J2G9XB9S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AvocadiWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AvocadiWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jmmartinez.Avocadi.AvocadiWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D12FD5B8303B5AD0008D9116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2J2G9XB9S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AvocadiWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AvocadiWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jmmartinez.Avocadi.AvocadiWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		D1E91CB73037AB1B001E86D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -329,6 +536,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Avocadi/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -373,6 +581,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Avocadi/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -459,6 +668,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D12FD5BA303B5AD0008D9116 /* Build configuration list for PBXNativeTarget "AvocadiWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D12FD5B7303B5AD0008D9116 /* Debug */,
+				D12FD5B8303B5AD0008D9116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D1E91C933037AB07001E86D8 /* Build configuration list for PBXProject "Avocadi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

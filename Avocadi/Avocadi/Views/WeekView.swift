@@ -49,6 +49,14 @@ struct WeekView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: isScrolledDown)
+        .onOpenURL { url in
+            // Lets tapping the AvocadiWidget home-screen widget land back on
+            // today even if this view was left scrolled further down.
+            guard url.host == "today" else { return }
+            withAnimation {
+                scrollPosition.scrollTo(edge: .top)
+            }
+        }
     }
 }
 
