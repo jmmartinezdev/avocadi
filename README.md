@@ -8,6 +8,8 @@ Avocadi shows a weekly meal plan: for each day, it lists the assigned lunch (*al
 
 The app opens straight into the week view, with today's day shown first (Monday through Sunday wrap around from there) so you always see what's relevant right now.
 
+A home-screen widget shows today's meals (medium size) without opening the app; tapping it opens Avocadi scrolled back to today.
+
 ## Structure
 
 The menu content lives in [`Menu.json`](Avocadi/Avocadi/Resources/Menu.json), bundled with the app — a fixed set of meals, dish categories, and dishes, plus which category is assigned to each day of the week. The app is organized in layers on top of that:
@@ -16,3 +18,4 @@ The menu content lives in [`Menu.json`](Avocadi/Avocadi/Resources/Menu.json), bu
 - **Services** (`Avocadi/Avocadi/Services`) — `MenuLoader` reads and decodes `Menu.json` from the app bundle.
 - **ViewModels** (`Avocadi/Avocadi/ViewModels`) — `DayViewModel`/`WeekViewModel` resolve the JSON's id references (which category is assigned to which meal, on which day) into ready-to-display data, and order the week so today comes first.
 - **Views** (`Avocadi/Avocadi/Views`) — `WeekView` (the app's root) lists every day via `DayView`, which in turn renders each meal's assigned category via `DishCategoryView`.
+- **Widget** (`Avocadi/AvocadiWidget`) — a WidgetKit extension reusing the same models/services/view-models. `AvocadiWidgetProvider.swift` builds a rolling window of `DayEntry` timeline entries from `MenuLoader`/`WeekViewModel`; `AvocadiWidgetViews.swift` renders today's meals (`CompactDayView`) or a fallback (`EmptyMenuView`); `AvocadiWidget.swift` holds the widget configuration and its preview.
