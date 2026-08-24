@@ -5,6 +5,7 @@
 //  Created by Chema Martinez on 20/8/26.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +14,6 @@ struct AvocadiApp: App {
         WindowGroup {
             WeekView(weekViewModel: .loadFromBundle())
         }
+        .modelContainer(for: DishAIContent.self)
     }
 }

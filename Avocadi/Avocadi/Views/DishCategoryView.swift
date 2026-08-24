@@ -28,11 +28,15 @@ struct DishCategoryView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(Array(dishCategory.dishes.enumerated()), id: \.element.id) { index, dish in
-                    HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("\(index + 1).")
-                            .foregroundStyle(.secondary)
-                        Text(dish.name)
+                    NavigationLink(value: dish) {
+                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+                            Text("\(index + 1).")
+                                .foregroundStyle(.secondary)
+                            Text(dish.name)
+                        }
                     }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.primary)
                 }
             }
         }

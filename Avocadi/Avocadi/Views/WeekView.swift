@@ -21,6 +21,15 @@ struct WeekView: View {
     }
 
     var body: some View {
+        NavigationStack {
+            weekScrollView
+                .navigationDestination(for: Dish.self) { dish in
+                    DishDetailView(dish: dish)
+                }
+        }
+    }
+
+    private var weekScrollView: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 24) {
                 ForEach(weekViewModel.days) { day in
