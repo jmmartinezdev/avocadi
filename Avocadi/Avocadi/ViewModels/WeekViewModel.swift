@@ -10,9 +10,9 @@ import Foundation
 /// The whole week's menu, resolved into `[DayViewModel]` and ready to hand
 /// straight to `WeekView`.
 struct WeekViewModel {
-    let days: [DayViewModel]
+    private(set) var days: [DayViewModel]
 
-    init(days: [DayViewModel]) {
+    private init(days: [DayViewModel]) {
         self.days = days
     }
 
@@ -52,5 +52,17 @@ struct WeekViewModel {
     private static func mondayBasedDayNumber(for date: Date, calendar: Calendar) -> Int {
         let sundayBasedWeekday = calendar.component(.weekday, from: date)
         return ((sundayBasedWeekday + 5) % 7) + 1
+    }
+
+    /// Re-rotates `days` in place if `days.first` no longer matches today's
+    /// weekday, returning whether it did so. Call this when the app returns
+    /// to the foreground: `days` is otherwise only rotated once at launch
+    /// (see `loadFromBundle`) and would stay pinned to whatever day was
+    /// "today" back then.
+    mutating func refreshIfNeeded(now: Date = Date(), calendar: Calendar = .current) -> Bool {
+        let today = Self.mondayBasedDayNumber(for: now, calendar: calendar)
+        guard days.first?.dayNumber != today else { return false }
+        days = Self.rotated(days, toStartAt: now, calendar: calendar)
+        return true
     }
 }

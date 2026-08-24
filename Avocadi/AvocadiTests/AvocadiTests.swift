@@ -56,6 +56,30 @@ struct WeekViewModelTests {
         let week = WeekViewModel(menu: makeMenu(), referenceDate: date(year: 2026, month: 8, day: 17), calendar: utcCalendar)
         #expect(week.days.count == 7)
     }
+
+    @Test func refreshIfNeededReturnsFalseAndLeavesOrderUnchangedWhenTodayUnchanged() {
+        // 2026-08-17 is a Monday.
+        let monday = date(year: 2026, month: 8, day: 17)
+        var week = WeekViewModel(menu: makeMenu(), referenceDate: monday, calendar: utcCalendar)
+        let originalOrder = week.days.map(\.dayNumber)
+
+        let didRefresh = week.refreshIfNeeded(now: monday, calendar: utcCalendar)
+
+        #expect(didRefresh == false)
+        #expect(week.days.map(\.dayNumber) == originalOrder)
+    }
+
+    @Test func refreshIfNeededReturnsTrueAndRerotatesWhenTodayHasAdvanced() {
+        // 2026-08-17 is a Monday, 2026-08-19 is the following Wednesday.
+        let monday = date(year: 2026, month: 8, day: 17)
+        let wednesday = date(year: 2026, month: 8, day: 19)
+        var week = WeekViewModel(menu: makeMenu(), referenceDate: monday, calendar: utcCalendar)
+
+        let didRefresh = week.refreshIfNeeded(now: wednesday, calendar: utcCalendar)
+
+        #expect(didRefresh == true)
+        #expect(week.days.map(\.dayNumber) == [3, 4, 5, 6, 7, 1, 2])
+    }
 }
 
 struct DayViewModelTests {
