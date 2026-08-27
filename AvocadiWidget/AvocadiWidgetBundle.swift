@@ -13,5 +13,8 @@ struct AvocadiWidgetBundle: WidgetBundle {
     var body: some Widget {
         AvocadiWidget()
         AvocadiWeekWidget()
+        if #available(iOS 27.0, *) {
+            AvocadiDayMenuWidget()
+        }
     }
 }
