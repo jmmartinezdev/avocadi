@@ -12,5 +12,6 @@ import SwiftUI
 struct AvocadiWidgetBundle: WidgetBundle {
     var body: some Widget {
         AvocadiWidget()
+        AvocadiWeekWidget()
     }
 }

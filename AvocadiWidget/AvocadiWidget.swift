@@ -27,6 +27,6 @@ struct AvocadiWidget: Widget {
 } timeline: {
     DayEntry(
         date: .now,
-        days: (try? MenuLoader.load()).map { Array(WeekViewModel(menu: $0).days.prefix(4)) } ?? []
+        days: (try? MenuLoader.load()).map { WeekViewModel(menu: $0).days } ?? []
     )
 }
