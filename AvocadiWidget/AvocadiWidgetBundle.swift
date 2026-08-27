@@ -11,10 +11,10 @@ import SwiftUI
 @main
 struct AvocadiWidgetBundle: WidgetBundle {
     var body: some Widget {
-        AvocadiWidget()
-        AvocadiWeekWidget()
+        DaySummaryWidget()
+        WeekWidget()
         if #available(iOS 27.0, *) {
-            AvocadiDayMenuWidget()
+            DayFullMenuWidget()
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  AvocadiWidgetViews.swift
+//  DaySummaryWidgetViews.swift
 //  AvocadiWidget
 //
 //  Created by Chema Martinez on 23/08/2026.
@@ -10,7 +10,7 @@ import WidgetKit
 
 /// Today's day name plus, per meal, the meal name and its dish category name.
 /// Full dish lists don't fit at this size — see `DishCategoryView` for those.
-struct CompactDayView: View {
+struct DaySummaryView: View {
     let day: DayViewModel
 
     var body: some View {
@@ -36,27 +36,13 @@ struct CompactDayView: View {
     }
 }
 
-struct EmptyMenuView: View {
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: "fork.knife")
-                .font(.title2)
-                .foregroundStyle(.secondary)
-            Text("No hay menú disponible")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct AvocadiWidgetEntryView: View {
+struct DaySummaryWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
         Group {
             if let today = entry.days.first {
-                CompactDayView(day: today)
+                DaySummaryView(day: today)
             } else {
                 EmptyMenuView()
             }

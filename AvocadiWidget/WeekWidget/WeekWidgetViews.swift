@@ -1,5 +1,5 @@
 //
-//  AvocadiWeekWidgetViews.swift
+//  WeekWidgetViews.swift
 //  AvocadiWidget
 //
 //  Created by Chema Martinez on 27/08/2026.
@@ -11,7 +11,7 @@ import WidgetKit
 /// Several days at a glance: each day's name followed by one row per meal,
 /// pairing the meal name with its dish category name.
 ///
-/// Like `CompactDayView` this stops at category names — the dishes themselves
+/// Like `DaySummaryView` this stops at category names — the dishes themselves
 /// don't fit even at this size, and are what opening the app is for.
 struct WeekAheadView: View {
     let days: [DayViewModel]
@@ -52,7 +52,7 @@ struct WeekAheadView: View {
     }
 }
 
-struct AvocadiWeekWidgetEntryView: View {
+struct WeekWidgetEntryView: View {
     var entry: Provider.Entry
 
     /// How many of the entry's days the tile has room for.

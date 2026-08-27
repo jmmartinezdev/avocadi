@@ -1,5 +1,5 @@
 //
-//  AvocadiWidget.swift
+//  DaySummaryWidget.swift
 //  AvocadiWidget
 //
 //  Created by Chema Martinez on 23/08/2026.
@@ -8,12 +8,12 @@
 import WidgetKit
 import SwiftUI
 
-struct AvocadiWidget: Widget {
-    let kind: String = "AvocadiWidget"
+struct DaySummaryWidget: Widget {
+    let kind: String = "DaySummaryWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            AvocadiWidgetEntryView(entry: entry)
+            DaySummaryWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Menú del día")
@@ -23,7 +23,7 @@ struct AvocadiWidget: Widget {
 }
 
 #Preview(as: .systemMedium) {
-    AvocadiWidget()
+    DaySummaryWidget()
 } timeline: {
     DayEntry(
         date: .now,

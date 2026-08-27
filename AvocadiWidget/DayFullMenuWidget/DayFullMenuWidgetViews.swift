@@ -1,5 +1,5 @@
 //
-//  AvocadiDayMenuWidgetViews.swift
+//  DayFullMenuWidgetViews.swift
 //  AvocadiWidget
 //
 //  Created by Chema Martinez on 27/08/2026.
@@ -8,18 +8,19 @@
 import SwiftUI
 import WidgetKit
 
-/// One of the typographic steps `DayMenuView` tries, roomiest first.
+/// One of the typographic steps `DayFullMenuView` tries, roomiest first.
 ///
 /// A single day is 10 to 16 dishes whose names average 65 characters (131 at
 /// the longest), so how large the text can be depends on both the day and the
 /// device: the busiest day fits at 13pt on a big iPhone or a 13" iPad, needs
 /// 12pt on an 11" iPad and 11pt on a small iPhone. Rather than pick one size
-/// and hope, `DayMenuView` walks these in order and keeps the first that fits.
+/// and hope, `DayFullMenuView` walks these in order and keeps the first that
+/// fits.
 ///
 /// The sizes are text styles rather than fixed point sizes so they keep
 /// following Dynamic Type; at the default size their dish text measures
 /// 15/13/12/11pt, which is what each step was sized against.
-enum DayMenuScale {
+enum DayFullMenuScale {
     case comfortable, compact, dense, minimal
 
     var dayName: Font {
@@ -72,13 +73,13 @@ enum DayMenuScale {
 /// A day's full menu at one given scale: the day name, then each meal's name,
 /// the category assigned to it and every dish in that category.
 ///
-/// Unlike `CompactDayView` and `WeekAheadView`, which stop at the category
+/// Unlike `DaySummaryView` and `WeekAheadView`, which stop at the category
 /// name, this lists the dishes themselves — that's the whole point of the
 /// extra-large portrait tile. Nothing is line-limited: the long names are
 /// meant to wrap to their two or three lines.
-struct DayMenuLayout: View {
+struct DayFullMenuLayout: View {
     let day: DayViewModel
-    let scale: DayMenuScale
+    let scale: DayFullMenuScale
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -115,35 +116,35 @@ struct DayMenuLayout: View {
     }
 }
 
-/// Picks the largest `DayMenuScale` the tile has room for.
-struct DayMenuView: View {
+/// Picks the largest `DayFullMenuScale` the tile has room for.
+struct DayFullMenuView: View {
     let day: DayViewModel
 
     var body: some View {
         ViewThatFits(in: .vertical) {
-            DayMenuLayout(day: day, scale: .comfortable)
-            DayMenuLayout(day: day, scale: .compact)
-            DayMenuLayout(day: day, scale: .dense)
+            DayFullMenuLayout(day: day, scale: .comfortable)
+            DayFullMenuLayout(day: day, scale: .compact)
+            DayFullMenuLayout(day: day, scale: .dense)
             // Last resort, so it has to fit rather than merely try to: the
             // steps above follow Dynamic Type and drop out one by one as it
             // grows, and past a point no readable size fits 16 dish names.
             // Capping Dynamic Type here pins this step to the geometry it was
             // measured against instead of letting the list run off the tile,
             // which a widget can't scroll to recover from.
-            DayMenuLayout(day: day, scale: .minimal)
+            DayFullMenuLayout(day: day, scale: .minimal)
                 .dynamicTypeSize(...DynamicTypeSize.large)
                 .minimumScaleFactor(0.8)
         }
     }
 }
 
-struct AvocadiDayMenuWidgetEntryView: View {
+struct DayFullMenuWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
         Group {
             if let today = entry.days.first {
-                DayMenuView(day: today)
+                DayFullMenuView(day: today)
             } else {
                 EmptyMenuView()
             }

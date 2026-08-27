@@ -12,8 +12,8 @@ import WidgetKit
 ///
 /// Carrying every day (rather than just "today") costs nothing — the rotated
 /// week is what `WeekViewModel` produces anyway — and lets each widget size
-/// take the prefix it needs from the very same entries: `AvocadiWidget` reads
-/// `days.first`, `AvocadiWeekWidget` reads the first five.
+/// take the prefix it needs from the very same entries: `DaySummaryWidget`
+/// reads `days.first`, `WeekWidget` reads the first five.
 /// An empty `days` array means the menu failed to load.
 struct DayEntry: TimelineEntry {
     let date: Date

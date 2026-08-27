@@ -1,5 +1,5 @@
 //
-//  AvocadiWeekWidget.swift
+//  WeekWidget.swift
 //  AvocadiWidget
 //
 //  Created by Chema Martinez on 27/08/2026.
@@ -8,16 +8,16 @@
 import WidgetKit
 import SwiftUI
 
-/// The multi-day counterpart to `AvocadiWidget`: same `Provider`, same
+/// The multi-day counterpart to `DaySummaryWidget`: same `Provider`, same
 /// entries, but showing the days after today as well. It's a separate widget
-/// rather than extra families on `AvocadiWidget` so both can sit on the home
+/// rather than extra families on `DaySummaryWidget` so both can sit on the home
 /// screen at once.
-struct AvocadiWeekWidget: Widget {
-    let kind: String = "AvocadiWeekWidget"
+struct WeekWidget: Widget {
+    let kind: String = "WeekWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            AvocadiWeekWidgetEntryView(entry: entry)
+            WeekWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Menú de la semana")
@@ -27,7 +27,7 @@ struct AvocadiWeekWidget: Widget {
 }
 
 #Preview(as: .systemLarge) {
-    AvocadiWeekWidget()
+    WeekWidget()
 } timeline: {
     DayEntry(
         date: .now,
