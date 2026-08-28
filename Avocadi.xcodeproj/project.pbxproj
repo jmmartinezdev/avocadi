@@ -265,6 +265,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ca,
 				es,
 				it,
 			);

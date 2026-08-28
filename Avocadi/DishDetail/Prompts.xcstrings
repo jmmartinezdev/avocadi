@@ -4,6 +4,12 @@
     "Dish: %@" : {
       "comment" : "AI PROMPT — not UI copy. The prompt handed to the on-device model, whose label word is localized deliberately: the dish name interpolated here is always Spanish, so the surrounding context has to be in the target language to hold the model's output there.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plat: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18,10 +24,39 @@
         }
       }
     },
+    "You are a concise culinary assistant. Given the name of a dish, which may be written in Spanish, write a brief, appetizing description of 1 or 2 sentences in English. Do not simply repeat the name of the dish." : {
+      "comment" : "AI PROMPT — not UI copy. Instructions for the on-device model. Each translation must be written natively in its own language and must name that language as the one to answer in; do not translate this literally as if it were a sentence shown to a user.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ets un assistent culinari concís. Donat el nom d'un plat, que pot estar escrit en castellà, escriu una descripció breu i temptadora d'1 o 2 frases en català. No et limitis a repetir el nom del plat."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eres un asistente culinario conciso. Dado el nombre de un plato, escribe una descripción breve y apetitosa de 1 o 2 frases en español. No te limites a repetir el nombre del plato."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei un assistente culinario conciso. Dato il nome di un piatto, che può essere scritto in spagnolo, scrivi una descrizione breve e invitante di 1 o 2 frasi in italiano. Non limitarti a ripetere il nome del piatto."
+          }
+        }
+      }
+    },
     "prompt.language.code" : {
       "comment" : "AI PROMPT — not UI copy. The language code of the prompts in this table, as a value in the table itself, so that the language recorded against a cached description is by construction the one its prompt was actually resolved in. Each translation is that localization's own language code, e.g. \"es\".",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ca"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -38,23 +73,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "it"
-          }
-        }
-      }
-    },
-    "You are a concise culinary assistant. Given the name of a dish, which may be written in Spanish, write a brief, appetizing description of 1 or 2 sentences in English. Do not simply repeat the name of the dish." : {
-      "comment" : "AI PROMPT — not UI copy. Instructions for the on-device model. Each translation must be written natively in its own language and must name that language as the one to answer in; do not translate this literally as if it were a sentence shown to a user.",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eres un asistente culinario conciso. Dado el nombre de un plato, escribe una descripción breve y apetitosa de 1 o 2 frases en español. No te limites a repetir el nombre del plato."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sei un assistente culinario conciso. Dato il nome di un piatto, che può essere scritto in spagnolo, scrivi una descrizione breve e invitante di 1 o 2 frasi in italiano. Non limitarti a ripetere il nome del piatto."
           }
         }
       }

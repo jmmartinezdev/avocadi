@@ -4,6 +4,12 @@
     "Dish" : {
       "comment" : "Navigation title of the dish detail screen.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plat"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21,6 +27,12 @@
     "Scroll to top" : {
       "comment" : "Accessibility label for the floating button that scrolls the week back to today.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torna a l'inici"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",

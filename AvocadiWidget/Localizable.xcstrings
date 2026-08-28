@@ -4,6 +4,12 @@
     "No menu available" : {
       "comment" : "Shown in a widget when the bundled menu fails to load.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hi ha cap menú disponible"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21,6 +27,12 @@
     "Shows every dish for today, lunch and dinner." : {
       "comment" : "Widget gallery description for the extra-large full menu widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra tots els plats d'avui, dinar i sopar."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38,6 +50,12 @@
     "Shows the dish categories for the days ahead." : {
       "comment" : "Widget gallery description for the large week widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra les categories de plats dels propers dies."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55,6 +73,12 @@
     "Shows today's dish categories." : {
       "comment" : "Widget gallery description for the medium day summary widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra les categories de plats d'avui."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72,6 +96,12 @@
     "This week's menu" : {
       "comment" : "Widget gallery name for the large week widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú de la setmana"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,6 +119,12 @@
     "Today's full menu" : {
       "comment" : "Widget gallery name for the extra-large full menu widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú complet d'avui"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106,6 +142,12 @@
     "Today's menu" : {
       "comment" : "Widget gallery name for the medium day summary widget.",
       "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú d'avui"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
