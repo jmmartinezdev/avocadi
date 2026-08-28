@@ -267,6 +267,7 @@
 				Base,
 				ca,
 				es,
+				fr,
 				gl,
 				it,
 			);

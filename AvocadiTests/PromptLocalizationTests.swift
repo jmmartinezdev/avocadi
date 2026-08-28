@@ -35,7 +35,7 @@ struct PromptLocalizationTests {
     @Test func everyIntendedLocalizationIsShipping() {
         let shipped = Set(Bundle.main.localizations)
         #expect(
-            shipped.isSuperset(of: ["en", "es", "it", "ca", "gl"]),
+            shipped.isSuperset(of: ["en", "es", "it", "ca", "gl", "fr"]),
             "app bundle ships \(shipped.sorted())"
         )
     }

@@ -16,6 +16,12 @@
             "value" : "No hay menú disponible"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun menu disponible"
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43,6 +49,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muestra todos los platos de hoy, del almuerzo y de la cena."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche tous les plats du jour, déjeuner et dîner."
           }
         },
         "gl" : {
@@ -74,6 +86,12 @@
             "value" : "Muestra las categorías de plato de los próximos días."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche les catégories de plats des prochains jours."
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muestra las categorías de plato de hoy."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche les catégories de plats du jour."
           }
         },
         "gl" : {
@@ -132,6 +156,12 @@
             "value" : "Menú de la semana"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu de la semaine"
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -161,6 +191,12 @@
             "value" : "Menú completo de hoy"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu complet du jour"
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -188,6 +224,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menú del día"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu du jour"
           }
         },
         "gl" : {

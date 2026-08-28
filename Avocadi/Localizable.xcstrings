@@ -16,6 +16,12 @@
             "value" : "Plato"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plat"
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45,6 +51,12 @@
             "value" : "Subir al principio"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenir en haut"
+          }
+        },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72,6 +84,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La descripción de abajo está en %@ porque Apple Intelligence no puede generar texto en el idioma de la app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La description ci-dessous est en %@ car Apple Intelligence ne peut pas générer de texte dans la langue de l'app."
           }
         },
         "gl" : {
