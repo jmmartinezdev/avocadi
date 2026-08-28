@@ -27,7 +27,7 @@ Code shared between the app and the widget is organized by layer at the top leve
 
 ## Localization
 
-The app is written in English and ships in English and Spanish, with the strings
+The app is written in English and ships in English, Spanish and Italian, with the strings
 in String Catalogs rather than in the code. The app and the widget are separate
 bundles, so each has its own `Localizable.xcstrings`; nothing under `Models`,
 `ViewModels` or `Services` contains a user-facing string, so there is nothing

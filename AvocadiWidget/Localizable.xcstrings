@@ -9,6 +9,12 @@
             "state" : "translated",
             "value" : "No hay menú disponible"
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun menù disponibile"
+          }
         }
       }
     },
@@ -19,6 +25,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muestra todos los platos de hoy, del almuerzo y de la cena."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra tutti i piatti di oggi, pranzo e cena."
           }
         }
       }
@@ -31,6 +43,12 @@
             "state" : "translated",
             "value" : "Muestra las categorías de plato de los próximos días."
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra le categorie di piatti dei prossimi giorni."
+          }
         }
       }
     },
@@ -41,6 +59,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muestra las categorías de plato de hoy."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra le categorie di piatti di oggi."
           }
         }
       }
@@ -53,6 +77,12 @@
             "state" : "translated",
             "value" : "Menú de la semana"
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menù della settimana"
+          }
         }
       }
     },
@@ -64,6 +94,12 @@
             "state" : "translated",
             "value" : "Menú completo de hoy"
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menù completo di oggi"
+          }
         }
       }
     },
@@ -74,6 +110,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menú del día"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menù di oggi"
           }
         }
       }

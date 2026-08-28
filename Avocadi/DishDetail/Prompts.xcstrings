@@ -9,6 +9,12 @@
             "state" : "translated",
             "value" : "Plato: %@"
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piatto: %@"
+          }
         }
       }
     },
@@ -24,8 +30,14 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "es"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "it"
           }
         }
       }
@@ -37,6 +49,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eres un asistente culinario conciso. Dado el nombre de un plato, escribe una descripción breve y apetitosa de 1 o 2 frases en español. No te limites a repetir el nombre del plato."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei un assistente culinario conciso. Dato il nome di un piatto, che può essere scritto in spagnolo, scrivi una descrizione breve e invitante di 1 o 2 frasi in italiano. Non limitarti a ripetere il nome del piatto."
           }
         }
       }
