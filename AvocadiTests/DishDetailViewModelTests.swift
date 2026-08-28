@@ -31,6 +31,7 @@ private struct FakeDishDescriptionGenerator: DishDescriptionGenerating {
 
     var isAvailable = true
     var promptVersion = 2
+    var language = "es"
     var result: Result<String, Error> = .success("Descripción generada")
 
     func generateDescription(for dish: Dish) async throws -> String {
@@ -75,6 +76,7 @@ struct DishDetailViewModelTests {
         }
         #expect(store.records["dish-1"]?.descriptionText == "Descripción generada")
         #expect(store.records["dish-1"]?.descriptionPromptVersion == 2)
+        #expect(store.records["dish-1"]?.descriptionLanguage == "es")
     }
 
     @Test func cachedEntryWithCurrentPromptVersionIsUsedAsIs() async {
@@ -82,7 +84,8 @@ struct DishDetailViewModelTests {
             "dish-1": DishAIContentRecord(
                 descriptionText: "Ya en caché",
                 imageData: Data([0xAA]),
-                descriptionPromptVersion: 2
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
             )
         ])
         let viewModel = DishDetailViewModel(
@@ -107,7 +110,8 @@ struct DishDetailViewModelTests {
             "dish-1": DishAIContentRecord(
                 descriptionText: "Descripción antigua",
                 imageData: Data([0xBB]),
-                descriptionPromptVersion: 1
+                descriptionPromptVersion: 1,
+                descriptionLanguage: "es"
             )
         ])
         let viewModel = DishDetailViewModel(
@@ -127,6 +131,7 @@ struct DishDetailViewModelTests {
         }
         #expect(store.records["dish-1"]?.descriptionText == "Descripción nueva")
         #expect(store.records["dish-1"]?.descriptionPromptVersion == 2)
+        #expect(store.records["dish-1"]?.descriptionLanguage == "es")
         #expect(store.records["dish-1"]?.imageData == Data([0xBB]))
     }
 
@@ -135,7 +140,8 @@ struct DishDetailViewModelTests {
             "dish-1": DishAIContentRecord(
                 descriptionText: "Descripción antigua",
                 imageData: nil,
-                descriptionPromptVersion: 1
+                descriptionPromptVersion: 1,
+                descriptionLanguage: "es"
             )
         ])
         let viewModel = DishDetailViewModel(
@@ -151,12 +157,90 @@ struct DishDetailViewModelTests {
         #expect(store.records["dish-1"]?.descriptionPromptVersion == 1)
     }
 
+    @Test func cachedDescriptionInAnotherLanguageIsRegeneratedKeepingCachedImage() async {
+        let store = FakeDishAIContentStore(seed: [
+            "dish-1": DishAIContentRecord(
+                descriptionText: "Descripción en español",
+                imageData: Data([0xCC]),
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
+            )
+        ])
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(language: "en", result: .success("A description in English")),
+            imageGenerator: FakeDishImageGenerator(result: .failure(FakeDishImageGenerator.Failure.generationFailed))
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == "A description in English")
+        if case .loaded(let data) = viewModel.imageState {
+            #expect(data == Data([0xCC]))
+        } else {
+            Issue.record("Expected the cached image to be kept — illustrations aren't language-specific")
+        }
+        #expect(store.records["dish-1"]?.descriptionLanguage == "en")
+        #expect(store.records["dish-1"]?.imageData == Data([0xCC]))
+    }
+
+    /// Records written before descriptions followed the app's language have no
+    /// language stamped on them, which has to read as stale so each dish
+    /// regenerates exactly once rather than keeping a description in whatever
+    /// language it happened to be generated in.
+    @Test func legacyCachedDescriptionWithNoRecordedLanguageIsRegenerated() async {
+        let store = FakeDishAIContentStore(seed: [
+            "dish-1": DishAIContentRecord(
+                descriptionText: "Descripción heredada",
+                imageData: Data([0xDD]),
+                descriptionPromptVersion: 2,
+                descriptionLanguage: nil
+            )
+        ])
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(result: .success("Descripción regenerada")),
+            imageGenerator: FakeDishImageGenerator(result: .failure(FakeDishImageGenerator.Failure.generationFailed))
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == "Descripción regenerada")
+        #expect(store.records["dish-1"]?.descriptionLanguage == "es")
+        #expect(store.records["dish-1"]?.imageData == Data([0xDD]))
+    }
+
+    @Test func failedRegenerationFallsBackToStaleDescriptionWithoutAdvancingLanguage() async {
+        let store = FakeDishAIContentStore(seed: [
+            "dish-1": DishAIContentRecord(
+                descriptionText: "Descripción en español",
+                imageData: nil,
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
+            )
+        ])
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(language: "en", result: .failure(FakeDishDescriptionGenerator.Failure.generationFailed)),
+            imageGenerator: FakeDishImageGenerator(result: .failure(FakeDishImageGenerator.Failure.generationFailed))
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == "Descripción en español")
+        #expect(store.records["dish-1"]?.descriptionLanguage == "es")
+    }
+
     @Test func cachedRowWithNoImageIsUnavailableAndNeverRetried() async {
         let store = FakeDishAIContentStore(seed: [
             "dish-1": DishAIContentRecord(
                 descriptionText: "Descripción",
                 imageData: nil,
-                descriptionPromptVersion: 2
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
             )
         ])
         let viewModel = DishDetailViewModel(

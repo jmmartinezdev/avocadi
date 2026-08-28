@@ -31,13 +31,25 @@ final class DishAIContent {
     /// regenerates it rather than keep showing text produced by the old
     /// prompt.
     var descriptionPromptVersion: Int
+    /// `DishDescriptionGenerating.language` at the time `descriptionText` was
+    /// generated. If the app is now running in a different language,
+    /// `DishDetailView` treats this entry's description as stale and
+    /// regenerates it, so descriptions always match the language the rest of
+    /// the app is being read in.
+    ///
+    /// Optional both because entries written before descriptions were
+    /// language-aware genuinely have no language on them — `nil` reads as
+    /// stale, so they regenerate once — and because an optional with no
+    /// default keeps this a lightweight SwiftData migration.
+    var descriptionLanguage: String?
     var generatedAt: Date
 
-    init(dishID: String, descriptionText: String?, imageData: Data?, descriptionPromptVersion: Int, generatedAt: Date = .now) {
+    init(dishID: String, descriptionText: String?, imageData: Data?, descriptionPromptVersion: Int, descriptionLanguage: String?, generatedAt: Date = .now) {
         self.dishID = dishID
         self.descriptionText = descriptionText
         self.imageData = imageData
         self.descriptionPromptVersion = descriptionPromptVersion
+        self.descriptionLanguage = descriptionLanguage
         self.generatedAt = generatedAt
     }
 }

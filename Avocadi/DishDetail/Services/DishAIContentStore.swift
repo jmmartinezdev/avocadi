@@ -35,7 +35,8 @@ final class SwiftDataDishAIContentStore: DishAIContentStoring {
         return DishAIContentRecord(
             descriptionText: entity.descriptionText,
             imageData: entity.imageData,
-            descriptionPromptVersion: entity.descriptionPromptVersion
+            descriptionPromptVersion: entity.descriptionPromptVersion,
+            descriptionLanguage: entity.descriptionLanguage
         )
     }
 
@@ -44,6 +45,7 @@ final class SwiftDataDishAIContentStore: DishAIContentStoring {
             entity.descriptionText = record.descriptionText
             entity.imageData = record.imageData
             entity.descriptionPromptVersion = record.descriptionPromptVersion
+            entity.descriptionLanguage = record.descriptionLanguage
             entity.generatedAt = .now
         } else {
             modelContext.insert(
@@ -51,7 +53,8 @@ final class SwiftDataDishAIContentStore: DishAIContentStoring {
                     dishID: dishID,
                     descriptionText: record.descriptionText,
                     imageData: record.imageData,
-                    descriptionPromptVersion: record.descriptionPromptVersion
+                    descriptionPromptVersion: record.descriptionPromptVersion,
+                    descriptionLanguage: record.descriptionLanguage
                 )
             )
         }

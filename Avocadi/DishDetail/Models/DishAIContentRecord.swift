@@ -25,4 +25,11 @@ nonisolated struct DishAIContentRecord: Equatable, Sendable {
     /// The generator's prompt version at the time `descriptionText` was
     /// generated. See `DishDescriptionGenerating.promptVersion`.
     var descriptionPromptVersion: Int
+    /// The language `descriptionText` was generated in. See
+    /// `DishDescriptionGenerating.language`.
+    ///
+    /// Optional because records written before descriptions followed the app's
+    /// language have no language on them; `nil` reads as stale, so each such
+    /// dish regenerates once and is then language-stamped like any other.
+    var descriptionLanguage: String?
 }

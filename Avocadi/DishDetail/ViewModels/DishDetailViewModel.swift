@@ -63,27 +63,33 @@ final class DishDetailViewModel {
     /// Image generation is only ever attempted once, when a record for
     /// this dish is first created — an existing record with no image on it
     /// is treated as a settled "unavailable", not retried. The description
-    /// is different: if the cached record was generated under an older
-    /// `descriptionGenerator.promptVersion` than the current one (e.g. a
-    /// wording/language fix shipped since), only the description is
-    /// regenerated, keeping the cached image untouched.
+    /// is different: if the cached record no longer matches how a
+    /// description would be generated now — either an older
+    /// `descriptionGenerator.promptVersion` (a wording fix shipped since) or a
+    /// different `descriptionGenerator.language` (the app is being read in
+    /// another language now) — only the description is regenerated, keeping
+    /// the cached image untouched. Illustrations aren't language-specific, so
+    /// switching language costs only the cheap half of generation.
     func load() async {
         let existing = store.fetch(dishID: dish.id)
         let currentPromptVersion = descriptionGenerator.promptVersion
+        let currentLanguage = descriptionGenerator.language
 
         if let existing {
             imageState = existing.imageData.map(ImageLoadState.loaded) ?? .unavailable
         } // else: leave `imageState` at `.loading` until generation resolves below.
 
-        if let existing, existing.descriptionPromptVersion == currentPromptVersion {
+        if let existing,
+           existing.descriptionPromptVersion == currentPromptVersion,
+           existing.descriptionLanguage == currentLanguage {
             descriptionText = existing.descriptionText
             return
         }
 
         async let descriptionResult = generateDescriptionIfAvailable()
         // Only generate an illustration if none is cached yet; a prompt
-        // version bump only affects the description, so it alone shouldn't
-        // trigger regenerating the image.
+        // version bump or a language change only affects the description, so
+        // neither should trigger regenerating the image.
         async let imageResult: Data? = existing == nil ? generateImageIfAvailable() : nil
 
         isGeneratingDescription = descriptionGenerator.isAvailable
@@ -106,13 +112,14 @@ final class DishDetailViewModel {
 
         guard description != nil || image != nil else { return }
 
-        // Only advances the recorded prompt version if regeneration
-        // actually succeeded — a failed attempt should retry next time,
-        // not get stuck permanently stale by being marked current.
+        // Only advances the recorded prompt version and language if
+        // regeneration actually succeeded — a failed attempt should retry next
+        // time, not get stuck permanently stale by being marked current.
         let record = DishAIContentRecord(
             descriptionText: description ?? existing?.descriptionText,
             imageData: image ?? existing?.imageData,
-            descriptionPromptVersion: description != nil ? currentPromptVersion : (existing?.descriptionPromptVersion ?? currentPromptVersion)
+            descriptionPromptVersion: description != nil ? currentPromptVersion : (existing?.descriptionPromptVersion ?? currentPromptVersion),
+            descriptionLanguage: description != nil ? currentLanguage : existing?.descriptionLanguage
         )
         store.save(dishID: dish.id, record)
     }
