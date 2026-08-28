@@ -28,7 +28,7 @@ struct DishCategoryView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(Array(dishCategory.dishes.enumerated()), id: \.element.id) { index, dish in
-                    NavigationLink(value: dish) {
+                    NavigationLink(value: DishSelection(dish: dish, categoryName: dishCategory.name)) {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
                             Text(verbatim: "\(index + 1).")
                                 .foregroundStyle(.secondary)

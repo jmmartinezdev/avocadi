@@ -23,8 +23,8 @@ struct WeekView: View {
     var body: some View {
         NavigationStack {
             weekScrollView
-                .navigationDestination(for: Dish.self) { dish in
-                    DishDetailView(dish: dish)
+                .navigationDestination(for: DishSelection.self) { selection in
+                    DishDetailView(dish: selection.dish, categoryName: selection.categoryName)
                 }
         }
     }

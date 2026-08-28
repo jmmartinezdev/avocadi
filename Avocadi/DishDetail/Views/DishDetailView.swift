@@ -22,9 +22,13 @@ import UIKit
 /// design.
 ///
 /// With generated content switched off in settings both sections are absent
-/// entirely, square included, leaving the dish name alone on screen.
+/// entirely, square included, leaving just the category and the dish name on
+/// screen.
 struct DishDetailView: View {
     let dish: Dish
+    /// The category the dish was tapped under, shown above its name. Handed
+    /// over by `DishSelection` because `Dish` itself doesn't know it.
+    let categoryName: String
 
     @Environment(\.modelContext) private var modelContext
     @AppStorage(AIContentSettings.isEnabledKey)
@@ -36,8 +40,15 @@ struct DishDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(dish.name)
-                    .font(.largeTitle.bold())
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(categoryName)
+                        .font(.caption.weight(.semibold))
+                        .textCase(.uppercase)
+                        .foregroundStyle(.secondary)
+
+                    Text(dish.name)
+                        .font(.largeTitle.bold())
+                }
 
                 imageSection
 
@@ -178,7 +189,10 @@ struct DishDetailView: View {
 
 #Preview {
     NavigationStack {
-        DishDetailView(dish: Dish(id: "20-0-0", name: "Tortilla francesa + queso fresco de cabra"))
+        DishDetailView(
+            dish: Dish(id: "20-0-0", name: "Tortilla francesa + queso fresco de cabra"),
+            categoryName: "Verduras + huevo"
+        )
     }
     .modelContainer(for: DishAIContent.self, inMemory: true)
 }
