@@ -6,9 +6,11 @@ Menu planner for iOS.
 
 Avocadi shows a weekly meal plan: for each day, it lists the assigned lunch (*almuerzo*) and dinner (*cena*), each shown as a dish category (e.g. "Legumbre + verduras") with a numbered list of specific dish suggestions to choose from (e.g. "Lentejas guisadas con verduras").
 
-The app opens straight into the week view, with today's day shown first (Monday through Sunday wrap around from there) so you always see what's relevant right now. If the app is left running in the background across midnight, reopening it re-checks the day and scrolls back to today. A floating button appears once you've scrolled down, to jump straight back to the top.
+The app opens straight into the week view, with today's day shown first (Monday through Sunday wrap around from there) so you always see what's relevant right now. If the app is left running in the background across midnight, reopening it re-checks the day and scrolls back to today. Two floating buttons sit over the scroll: a gear in the top right that opens Settings, and one that appears in the bottom right once you've scrolled down, to jump straight back to the top.
 
 Tapping any dish opens a detail screen with a short description and an illustration, both generated on device with Apple Intelligence and cached so each dish is only generated once. The description is written in whatever language the app is being read in, even though the dish names themselves are always Spanish.
+
+Generated content can be switched off entirely. Turning it off doesn't only stop new generation — it hides what's already cached, so every dish shows its name alone and one visited last week looks the same as one never opened. The switch deletes nothing, so turning it back on brings everything straight back; actually clearing what's stored on the device is a separate action on the same screen.
 
 Three home-screen widgets show the plan without opening the app: a medium one for today's meals, a large one for the next five days, and — from iOS 27 — an extra-large portrait one with today's full menu. The first two list dish categories only; the extra-large one is the first tile tall enough for the dish names themselves. Tapping any of them opens Avocadi scrolled back to today.
 
@@ -21,8 +23,9 @@ Code shared between the app and the widget is organized by layer at the top leve
 - **Models** (`Avocadi/Models`) — `Codable` structs mirroring the JSON as-is: `Menu`, `Meal`, `DishCategory`, `Dish`, `Day`.
 - **Services** (`Avocadi/Services`) — `MenuLoader` reads and decodes `Menu.json` from the app bundle.
 - **ViewModels** (`Avocadi/ViewModels`) — `DayViewModel`/`WeekViewModel` resolve the JSON's id references (which category is assigned to which meal, on which day) into ready-to-display data, and order the week so today comes first; `WeekViewModel.refreshIfNeeded(...)` re-rotates it if "today" has changed since.
-- **Week** (`Avocadi/Week`) — `WeekView` (the app's root) lists every day via `DayView`, which in turn renders each meal's assigned category via `DishCategoryView`; it also refreshes the day order (scrolling back to top if it changed) when the app returns to the foreground.
-- **DishDetail** (`Avocadi/DishDetail`) — the screen behind tapping a dish, layered behind protocols so its orchestration is testable without SwiftData or the AI frameworks: `DishAIContentStore` persists generated content, `DishDescriptionGenerator` and `DishImageGenerator` wrap Foundation Models and Image Playground, and `DishDetailViewModel` ties them together (cache lookup, regeneration when the description prompt changes or the app's language does, per-section loading state).
+- **Week** (`Avocadi/Week`) — `WeekView` (the app's root) lists every day via `DayView`, which in turn renders each meal's assigned category via `DishCategoryView`; it also refreshes the day order (scrolling back to top if it changed) when the app returns to the foreground. The gear into Settings and the scroll-to-top button are both plain glass buttons overlaid on the scroll, built alike on purpose: as a `ToolbarItem` the gear would give the week a navigation bar it otherwise has no use for, and that bar's height alone pushes every day title down the screen.
+- **DishDetail** (`Avocadi/DishDetail`) — the screen behind tapping a dish, layered behind protocols so its orchestration is testable without SwiftData or the AI frameworks: `DishAIContentStore` persists generated content, `DishDescriptionGenerator` and `DishImageGenerator` wrap Foundation Models and Image Playground, and `DishDetailViewModel` ties them together (cache lookup, regeneration when the description prompt changes or the app's language does, per-section loading state, and the settings switch, which it honours by returning before the cache is even read — one guard covering both "generate nothing" and "show nothing").
+- **Settings** (`Avocadi/Settings`) — `SettingsView`, the app's only preference screen: a switch for generated content, and a destructive action clearing everything `DishAIContentStore` has cached. `AIContentSettings` holds the `@AppStorage` key and its default in one place, so the screen that writes the setting and the dish screen that reads it can't drift apart on either.
 - **Widget** (`AvocadiWidget`) — a WidgetKit extension reusing the same models/services/view-models. `AvocadiWidgetProvider.swift` builds the `DayEntry` timeline from `MenuLoader`/`WeekViewModel`, each entry carrying that day's whole rotated week so every widget can read the prefix it needs from the same entries. The three widgets then share that provider (and `EmptyMenuView`, the fallback when the menu fails to load) and differ only in their views, so each one lives in its own folder holding its definition and its views: `DaySummaryWidget/` renders today alone (`DaySummaryView`), `WeekWidget/` renders several days (`WeekAheadView`), and `DayFullMenuWidget/` lists today's dishes in full (`DayFullMenuView`). A busy day is 16 dish names averaging 65 characters, which fits at a different size on each device, so `DayFullMenuView` uses `ViewThatFits` to pick the largest of four typographic scales the tile has room for. Its `systemExtraLargePortrait` family only exists from iOS 27 while the rest of the extension targets 26.5, so `AvocadiWidgetBundle` registers that widget behind an availability check.
 
 ## Localization
@@ -37,8 +40,9 @@ The **menu content stays Spanish in both languages**. Dish, category, meal and d
 names all come from `Menu.json` and reach the screen as plain `String`s, which
 SwiftUI does not localize — only the app's own chrome switches. Text that isn't
 copy is kept out of the catalogs with `Text(verbatim:)`: the numbering on dish
-lists, and the redacted placeholder lines behind the description shimmer, whose
-only job is to have the right widths.
+lists, the redacted placeholder lines behind the description shimmer, whose
+only job is to have the right widths, and the "Apple Intelligence" heading in
+Settings, a brand name spelled identically in every language the app ships.
 
 The prompts driving the on-device description live in their own
 `DishDetail/Prompts.xcstrings` rather than alongside the UI strings, because they
