@@ -15,7 +15,7 @@ struct EmptyMenuView: View {
             Image(systemName: "fork.knife")
                 .font(.title2)
                 .foregroundStyle(.secondary)
-            Text("No hay menú disponible")
+            Text("No menu available")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }

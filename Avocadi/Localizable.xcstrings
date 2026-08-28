@@ -1,0 +1,28 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Dish" : {
+      "comment" : "Navigation title of the dish detail screen.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plato"
+          }
+        }
+      }
+    },
+    "Scroll to top" : {
+      "comment" : "Accessibility label for the floating button that scrolls the week back to today.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subir al principio"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

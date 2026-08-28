@@ -43,7 +43,7 @@ struct DishDetailView: View {
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .navigationTitle("Plato")
+        .navigationTitle("Dish")
         .navigationBarTitleDisplayMode(.inline)
         .task {
             guard viewModel == nil else { return }
@@ -108,15 +108,17 @@ struct DishDetailView: View {
     /// description while it generates — their actual text is irrelevant
     /// (`.redacted` hides it), only each line's rendered width matters,
     /// giving the placeholder a natural paragraph shape rather than uniform
-    /// bars.
+    /// bars. Hence `Text(verbatim:)`: this is layout scaffolding, not copy, so
+    /// it must stay out of the string catalog — a translator shortening these
+    /// lines would silently reshape the placeholder.
     private var descriptionPlaceholder: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Placeholder description line that is fairly long")
-            Text("A shorter second placeholder line")
-            Text("Short line")
-            Text("Another placeholder line, this one a bit longer")
-            Text("Yet another shorter placeholder line")
-            Text("One last short line")
+            Text(verbatim: "Placeholder description line that is fairly long")
+            Text(verbatim: "A shorter second placeholder line")
+            Text(verbatim: "Short line")
+            Text(verbatim: "Another placeholder line, this one a bit longer")
+            Text(verbatim: "Yet another shorter placeholder line")
+            Text(verbatim: "One last short line")
         }
         .font(.body)
         .foregroundStyle(.secondary)

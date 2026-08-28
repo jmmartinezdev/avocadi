@@ -20,8 +20,8 @@ struct WeekWidget: Widget {
             WeekWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Menú de la semana")
-        .description("Muestra las categorías de plato de los próximos días.")
+        .configurationDisplayName("This week's menu")
+        .description("Shows the dish categories for the days ahead.")
         .supportedFamilies([.systemLarge])
     }
 }

@@ -25,8 +25,8 @@ struct DayFullMenuWidget: Widget {
             DayFullMenuWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Menú completo de hoy")
-        .description("Muestra todos los platos de hoy, del almuerzo y de la cena.")
+        .configurationDisplayName("Today's full menu")
+        .description("Shows every dish for today, lunch and dinner.")
         .supportedFamilies([.systemExtraLargePortrait])
     }
 }

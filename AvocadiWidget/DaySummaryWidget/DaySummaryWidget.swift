@@ -16,8 +16,8 @@ struct DaySummaryWidget: Widget {
             DaySummaryWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Menú del día")
-        .description("Muestra las categorías de plato de hoy.")
+        .configurationDisplayName("Today's menu")
+        .description("Shows today's dish categories.")
         .supportedFamilies([.systemMedium])
     }
 }

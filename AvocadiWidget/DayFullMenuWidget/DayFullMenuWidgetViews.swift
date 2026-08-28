@@ -100,7 +100,7 @@ struct DayFullMenuLayout: View {
                     VStack(alignment: .leading, spacing: 4) {
                         ForEach(Array(plan.dishCategory.dishes.enumerated()), id: \.element.id) { index, dish in
                             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                                Text("\(index + 1).")
+                                Text(verbatim: "\(index + 1).")
                                     .foregroundStyle(.secondary)
                                     .frame(width: scale.numberWidth, alignment: .trailing)
                                 Text(dish.name)

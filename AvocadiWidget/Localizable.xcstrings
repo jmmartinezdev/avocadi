@@ -1,0 +1,83 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "No menu available" : {
+      "comment" : "Shown in a widget when the bundled menu fails to load.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay menú disponible"
+          }
+        }
+      }
+    },
+    "Shows every dish for today, lunch and dinner." : {
+      "comment" : "Widget gallery description for the extra-large full menu widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra todos los platos de hoy, del almuerzo y de la cena."
+          }
+        }
+      }
+    },
+    "Shows the dish categories for the days ahead." : {
+      "comment" : "Widget gallery description for the large week widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra las categorías de plato de los próximos días."
+          }
+        }
+      }
+    },
+    "Shows today's dish categories." : {
+      "comment" : "Widget gallery description for the medium day summary widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra las categorías de plato de hoy."
+          }
+        }
+      }
+    },
+    "This week's menu" : {
+      "comment" : "Widget gallery name for the large week widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú de la semana"
+          }
+        }
+      }
+    },
+    "Today's full menu" : {
+      "comment" : "Widget gallery name for the extra-large full menu widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú completo de hoy"
+          }
+        }
+      }
+    },
+    "Today's menu" : {
+      "comment" : "Widget gallery name for the medium day summary widget.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú del día"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

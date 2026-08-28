@@ -30,7 +30,7 @@ struct DishCategoryView: View {
                 ForEach(Array(dishCategory.dishes.enumerated()), id: \.element.id) { index, dish in
                     NavigationLink(value: dish) {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Text("\(index + 1).")
+                            Text(verbatim: "\(index + 1).")
                                 .foregroundStyle(.secondary)
                             Text(dish.name)
                         }
