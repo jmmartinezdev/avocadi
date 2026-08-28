@@ -15,15 +15,20 @@ import UIKit
 /// Purely declarative: all loading/generation/persistence logic lives in
 /// `DishDetailViewModel`, this view just renders whatever state it reports.
 ///
-/// The image section is always shown — as a fixed-size square in one of
-/// three states (loading, loaded, unavailable) — so its frame never jumps
-/// as generation resolves. The description section, on the other hand,
-/// simply doesn't appear when unavailable — there's no placeholder text
-/// for it, by design.
+/// The image section is shown as a fixed-size square in one of three
+/// states (loading, loaded, unavailable), so its frame never jumps as
+/// generation resolves. The description section, on the other hand, simply
+/// doesn't appear when unavailable — there's no placeholder text for it, by
+/// design.
+///
+/// With generated content switched off in settings both sections are absent
+/// entirely, square included, leaving the dish name alone on screen.
 struct DishDetailView: View {
     let dish: Dish
 
     @Environment(\.modelContext) private var modelContext
+    @AppStorage(AIContentSettings.isEnabledKey)
+    private var isAIContentEnabled = AIContentSettings.isEnabledDefault
     @State private var viewModel: DishDetailViewModel?
 
     private let imageCornerRadius: CGFloat = 16
@@ -46,39 +51,58 @@ struct DishDetailView: View {
         .navigationTitle("Dish")
         .navigationBarTitleDisplayMode(.inline)
         .task {
+            // Reading `isAIContentEnabled` once, here, is enough: settings are
+            // reachable only from the week view, so this screen is always
+            // popped before the switch can change under it.
             guard viewModel == nil else { return }
             let vm = DishDetailViewModel(
                 dish: dish,
                 store: SwiftDataDishAIContentStore(modelContext: modelContext),
                 descriptionGenerator: FoundationModelsDishDescriptionGenerator(),
-                imageGenerator: ImagePlaygroundDishImageGenerator()
+                imageGenerator: ImagePlaygroundDishImageGenerator(),
+                isAIContentEnabled: isAIContentEnabled
             )
             viewModel = vm
             await vm.load()
         }
     }
 
+    /// Each state wraps itself in `imageSquare` rather than the switch being
+    /// wrapped as a whole, because `hidden` has to skip the sizing modifiers
+    /// too — sized but empty, it would leave a square-shaped gap under the
+    /// dish name instead of disappearing.
+    @ViewBuilder
     private var imageSection: some View {
-        Group {
-            switch viewModel?.imageState ?? .loading {
-            case .loaded(let data):
-                if let uiImage = UIImage(data: data) {
+        switch viewModel?.imageState ?? .loading {
+        case .loaded(let data):
+            if let uiImage = UIImage(data: data) {
+                imageSquare {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()
-                } else {
-                    unavailableImagePlaceholder
                 }
-            case .loading:
+            } else {
+                imageSquare { unavailableImagePlaceholder }
+            }
+        case .loading:
+            imageSquare {
                 Color(.systemGray5)
                     .shimmering()
-            case .unavailable:
-                unavailableImagePlaceholder
             }
+        case .unavailable:
+            imageSquare { unavailableImagePlaceholder }
+        case .hidden:
+            EmptyView()
         }
-        .aspectRatio(1, contentMode: .fit)
-        .frame(maxWidth: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius: imageCornerRadius))
+    }
+
+    /// The fixed-size square every visible image state shares, so switching
+    /// between them never changes the layout.
+    private func imageSquare(@ViewBuilder _ content: () -> some View) -> some View {
+        content()
+            .aspectRatio(1, contentMode: .fit)
+            .frame(maxWidth: .infinity)
+            .clipShape(RoundedRectangle(cornerRadius: imageCornerRadius))
     }
 
     private var unavailableImagePlaceholder: some View {

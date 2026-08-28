@@ -20,6 +20,10 @@ protocol DishAIContentStoring {
     /// merged old + new fields into `record` (e.g. keeping a cached image
     /// while only the description changed) before calling this.
     func save(dishID: String, _ record: DishAIContentRecord)
+    /// Throws away every cached record, for the settings screen's "delete
+    /// generated content". Deliberately all-or-nothing: the cache is keyed by
+    /// dish and there is no per-dish delete anywhere in the UI.
+    func deleteAll()
 }
 
 /// SwiftData-backed `DishAIContentStoring`, wrapping `DishAIContent`.
@@ -58,6 +62,22 @@ final class SwiftDataDishAIContentStore: DishAIContentStoring {
                 )
             )
         }
+    }
+
+    func deleteAll() {
+        // Deliberately not `modelContext.delete(model:)`: that's a batch
+        // delete straight against the persistent store, so it skips anything
+        // still pending in the context — and since `save(dishID:)` leaves
+        // persisting to autosave, a dish generated moments ago is exactly
+        // that. Fetching first picks up pending inserts along with saved rows.
+        let entities = (try? modelContext.fetch(FetchDescriptor<DishAIContent>())) ?? []
+        for entity in entities {
+            modelContext.delete(entity)
+        }
+        // Saved here rather than left to autosave too: "delete my data" should
+        // be on disk by the time the user leaves the screen, not whenever the
+        // next autosave happens to fire.
+        try? modelContext.save()
     }
 
     private func fetchEntity(dishID: String) -> DishAIContent? {

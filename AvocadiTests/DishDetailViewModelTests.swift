@@ -24,6 +24,10 @@ private final class FakeDishAIContentStore: DishAIContentStoring {
     func save(dishID: String, _ record: DishAIContentRecord) {
         records[dishID] = record
     }
+
+    func deleteAll() {
+        records.removeAll()
+    }
 }
 
 private struct FakeDishDescriptionGenerator: DishDescriptionGenerating {
@@ -324,6 +328,43 @@ struct DishDetailViewModelTests {
 
         #expect(viewModel.descriptionText == "Un guiso tradicional")
         #expect(viewModel.fallbackLanguage == "es")
+    }
+
+    /// The settings switch has to hide what's already cached, not just stop
+    /// new generation — otherwise dishes visited before it was turned off keep
+    /// showing generated content and the app looks half-off. It must not
+    /// *delete* that cache, though; that's the settings screen's separate,
+    /// explicit action.
+    @Test func disabledAIContentShowsNothingAndLeavesTheCacheAlone() async {
+        let store = FakeDishAIContentStore(seed: [
+            "dish-1": DishAIContentRecord(
+                descriptionText: "Descripción en caché",
+                imageData: Data([0xFF]),
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
+            )
+        ])
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(),
+            imageGenerator: FakeDishImageGenerator(),
+            isAIContentEnabled: false
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == nil)
+        #expect(viewModel.isGeneratingDescription == false)
+        // Specifically `.hidden`, not `.unavailable`: the latter still draws
+        // the placeholder square, which is exactly what shouldn't appear here.
+        if case .hidden = viewModel.imageState {
+            // expected
+        } else {
+            Issue.record("Expected imageState to be .hidden, not a placeholder square")
+        }
+        #expect(store.records["dish-1"]?.descriptionText == "Descripción en caché")
+        #expect(store.records["dish-1"]?.imageData == Data([0xFF]))
     }
 
     @Test func descriptionUnavailableLeavesTextNilWithoutCrashing() async {

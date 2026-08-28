@@ -1,6 +1,111 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Delete" : {
+      "comment" : "Confirm button in the dialog that deletes all generated content.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina"
+          }
+        }
+      }
+    },
+    "Delete all generated content?" : {
+      "comment" : "Title of the confirmation dialog shown before deleting every cached description and illustration.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vols eliminar tot el contingut generat?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar todo el contenido generado?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer tout le contenu généré ?"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar todo o contido xerado?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminare tutti i contenuti generati?"
+          }
+        }
+      }
+    },
+    "Delete generated content" : {
+      "comment" : "Destructive button in Settings that deletes every cached description and illustration.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina el contingut generat"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar el contenido generado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le contenu généré"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar o contido xerado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina i contenuti generati"
+          }
+        }
+      }
+    },
     "Dish" : {
       "comment" : "Navigation title of the dish detail screen.",
       "localizations" : {
@@ -36,6 +141,111 @@
         }
       }
     },
+    "Dishes show only their name when this is off. Nothing is generated, and anything generated before stays hidden." : {
+      "comment" : "Explains what turning off the Apple Intelligence content switch in Settings does.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quan està desactivat, els plats només mostren el nom. No es genera res, i el que s'hagi generat abans queda amagat."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando está desactivado, los platos solo muestran su nombre. No se genera nada, y lo generado anteriormente queda oculto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lorsque cette option est désactivée, les plats n'affichent que leur nom. Rien n'est généré, et ce qui a été généré auparavant reste masqué."
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cando está desactivado, os pratos só amosan o seu nome. Non se xera nada, e o xerado anteriormente queda agochado."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando è disattivato, i piatti mostrano solo il loro nome. Non viene generato nulla e ciò che è stato generato in precedenza resta nascosto."
+          }
+        }
+      }
+    },
+    "Generated descriptions and images" : {
+      "comment" : "Label of the Settings switch that turns Apple Intelligence descriptions and illustrations on or off.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripcions i imatges generades"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripciones e imágenes generadas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descriptions et images générées"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descricións e imaxes xeradas"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrizioni e immagini generate"
+          }
+        }
+      }
+    },
+    "Removes every description and illustration saved on this device." : {
+      "comment" : "Explains what the delete button in Settings removes.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina totes les descripcions i il·lustracions desades en aquest dispositiu."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina todas las descripciones e ilustraciones guardadas en este dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprime toutes les descriptions et illustrations enregistrées sur cet appareil."
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina todas as descricións e ilustracións gardadas neste dispositivo."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina tutte le descrizioni e le illustrazioni salvate su questo dispositivo."
+          }
+        }
+      }
+    },
     "Scroll to top" : {
       "comment" : "Accessibility label for the floating button that scrolls the week back to today.",
       "localizations" : {
@@ -67,6 +277,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Torna all'inizio"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "comment" : "Navigation title of the settings screen, and accessibility label of the toolbar button that opens it.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuració"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axustes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impostazioni"
           }
         }
       }

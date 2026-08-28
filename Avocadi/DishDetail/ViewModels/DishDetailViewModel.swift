@@ -24,14 +24,21 @@ import Observation
 @Observable
 final class DishDetailViewModel {
     /// The image's state: loading (shimmering placeholder), successfully
-    /// loaded, or unavailable (generation wasn't possible, or failed, or an
-    /// already-cached dish has no image on record). `DishDetailView` renders
-    /// all three inside the same fixed-size square container so switching
-    /// between them never changes the layout.
+    /// loaded, unavailable (generation wasn't possible, or failed, or an
+    /// already-cached dish has no image on record), or hidden. `DishDetailView`
+    /// renders the first three inside the same fixed-size square container so
+    /// switching between them never changes the layout.
+    ///
+    /// `hidden` is the exception, and is why it isn't folded into
+    /// `unavailable`: that one means "we tried and there's nothing", which
+    /// still earns the square and its placeholder icon, whereas this one means
+    /// the user switched generated content off — so there is no image section
+    /// on screen at all, square included.
     enum ImageLoadState {
         case loading
         case loaded(Data)
         case unavailable
+        case hidden
     }
 
     private(set) var descriptionText: String?
@@ -62,23 +69,29 @@ final class DishDetailViewModel {
     private let store: DishAIContentStoring
     private let descriptionGenerator: DishDescriptionGenerating
     private let imageGenerator: DishImageGenerating
+    private let isAIContentEnabled: Bool
 
     init(
         dish: Dish,
         store: DishAIContentStoring,
         descriptionGenerator: DishDescriptionGenerating,
-        imageGenerator: DishImageGenerating
+        imageGenerator: DishImageGenerating,
+        isAIContentEnabled: Bool = AIContentSettings.isEnabledDefault
     ) {
         self.dish = dish
         self.store = store
         self.descriptionGenerator = descriptionGenerator
         self.imageGenerator = imageGenerator
+        self.isAIContentEnabled = isAIContentEnabled
     }
 
     /// Loads cached content for `dish` if it exists; otherwise generates
     /// the description and illustration concurrently, updating each
     /// section's state as soon as its piece finishes rather than waiting
     /// for both, then persists whatever was generated.
+    ///
+    /// Does none of that when `isAIContentEnabled` is `false` — see the guard
+    /// below.
     ///
     /// Image generation is only ever attempted once, when a record for
     /// this dish is first created — an existing record with no image on it
@@ -91,6 +104,17 @@ final class DishDetailViewModel {
     /// the cached image untouched. Illustrations aren't language-specific, so
     /// switching language costs only the cheap half of generation.
     func load() async {
+        // Off means off on screen, not just off in the generators: returning
+        // before the store is even read is what makes a dish generated last
+        // week look identical to one never opened. Nothing is deleted here —
+        // flipping the switch back on brings the cache straight back, and
+        // actually throwing it away is the settings screen's separate,
+        // explicit action.
+        guard isAIContentEnabled else {
+            imageState = .hidden
+            return
+        }
+
         let existing = store.fetch(dishID: dish.id)
         let currentPromptVersion = descriptionGenerator.promptVersion
         let currentLanguage = descriptionGenerator.language
