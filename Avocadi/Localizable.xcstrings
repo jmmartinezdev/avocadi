@@ -16,6 +16,12 @@
             "value" : "Plato"
           }
         },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prato"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39,6 +45,12 @@
             "value" : "Subir al principio"
           }
         },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volver ao inicio"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60,6 +72,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La descripción de abajo está en %@ porque Apple Intelligence no puede generar texto en el idioma de la app."
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A descrición de abaixo está en %@ porque Apple Intelligence non pode xerar texto no idioma da aplicación."
           }
         },
         "it" : {
