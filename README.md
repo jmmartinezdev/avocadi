@@ -27,7 +27,7 @@ Code shared between the app and the widget is organized by layer at the top leve
 
 ## Localization
 
-The app is written in English and ships in English, Spanish and Italian, with the strings
+The app is written in English and ships in English, Spanish, Italian and Catalan, with the strings
 in String Catalogs rather than in the code. The app and the widget are separate
 bundles, so each has its own `Localizable.xcstrings`; nothing under `Models`,
 `ViewModels` or `Services` contains a user-facing string, so there is nothing
@@ -49,9 +49,27 @@ follows the language of its surrounding context far more reliably than a
 Spanish whatever the app's language, pulling the other way.
 
 That table also holds a `prompt.language.code` entry giving its own language code.
-`DishDescriptionGenerator` reads its `language` from there, so the language stamped
-onto a cached description is by construction the one its prompt resolved in;
+`DishDescriptionGenerator` reads the app's language from there, so the language
+stamped onto a cached description is by construction the one its prompt resolved in;
 `DishDetailViewModel` compares that stamp alongside `promptVersion` and regenerates
 the description — but never the illustration, which isn't language-specific — when
 either has changed. Adding a language therefore means adding its
 `prompt.language.code`, which `PromptLocalizationTests` enforces.
+
+Apple Intelligence doesn't necessarily write every language the app ships, and which
+ones it writes changes between releases — Catalan is the case that prompted this.
+Nothing in `SystemLanguageModel.Availability` reports it either: an unsupported
+language leaves the model reporting itself available and then throwing on the actual
+request. So rather than hardcoding a list, the generator asks `supportsLocale` up
+front and, when the app's language isn't supported, generates in Spanish instead —
+the language the dish names are already in — stamping the cache `es` so it stays a
+plain cache hit afterwards. `DishDetailView` puts a short note
+above such a description saying which language it's in and why, because a Catalan
+screen holding a Spanish paragraph is otherwise indistinguishable from a bug. If the
+model supports nothing the app can use, the description section is simply absent,
+exactly as on a device without Apple Intelligence.
+
+The fallback ordering lives in a pure
+`FoundationModelsDishDescriptionGenerator.resolveLanguage(appLanguage:contentLanguage:isSupported:)`
+because `supportsLocale` needs capable hardware that no simulator has —
+`DescriptionLanguageResolutionTests` is the only coverage it can have.

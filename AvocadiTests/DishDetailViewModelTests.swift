@@ -32,6 +32,7 @@ private struct FakeDishDescriptionGenerator: DishDescriptionGenerating {
     var isAvailable = true
     var promptVersion = 2
     var language = "es"
+    var appLanguage = "es"
     var result: Result<String, Error> = .success("Descripción generada")
 
     func generateDescription(for dish: Dish) async throws -> String {
@@ -258,6 +259,71 @@ struct DishDetailViewModelTests {
             Issue.record("Expected imageState to stay .unavailable, not retry generation")
         }
         #expect(store.records["dish-1"]?.imageData == nil)
+    }
+
+    @Test func descriptionInTheAppsOwnLanguageShowsNoFallbackNote() async {
+        let store = FakeDishAIContentStore()
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(language: "es", appLanguage: "es"),
+            imageGenerator: FakeDishImageGenerator()
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText != nil)
+        #expect(viewModel.fallbackLanguage == nil)
+    }
+
+    /// The Catalan case: the model can't write the app's language, so the
+    /// generator hands back Spanish and the view has to say so.
+    @Test func descriptionGeneratedInAFallbackLanguageReportsIt() async {
+        let store = FakeDishAIContentStore()
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(
+                language: "es",
+                appLanguage: "ca",
+                result: .success("Un guiso tradicional")
+            ),
+            imageGenerator: FakeDishImageGenerator()
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == "Un guiso tradicional")
+        #expect(viewModel.fallbackLanguage == "es")
+        #expect(store.records["dish-1"]?.descriptionLanguage == "es")
+    }
+
+    /// The note is driven by the description on screen, not by generation
+    /// happening this launch — a cached fallback still has to be explained.
+    @Test func cachedFallbackDescriptionStillReportsItsLanguage() async {
+        let store = FakeDishAIContentStore(seed: [
+            "dish-1": DishAIContentRecord(
+                descriptionText: "Un guiso tradicional",
+                imageData: Data([0xEE]),
+                descriptionPromptVersion: 2,
+                descriptionLanguage: "es"
+            )
+        ])
+        let viewModel = DishDetailViewModel(
+            dish: testDish,
+            store: store,
+            descriptionGenerator: FakeDishDescriptionGenerator(
+                language: "es",
+                appLanguage: "ca",
+                result: .failure(FakeDishDescriptionGenerator.Failure.generationFailed)
+            ),
+            imageGenerator: FakeDishImageGenerator(result: .failure(FakeDishImageGenerator.Failure.generationFailed))
+        )
+
+        await viewModel.load()
+
+        #expect(viewModel.descriptionText == "Un guiso tradicional")
+        #expect(viewModel.fallbackLanguage == "es")
     }
 
     @Test func descriptionUnavailableLeavesTextNilWithoutCrashing() async {

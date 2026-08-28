@@ -35,8 +35,28 @@ final class DishDetailViewModel {
     }
 
     private(set) var descriptionText: String?
+    /// The language `descriptionText` is actually written in, kept in lockstep
+    /// with it so `fallbackLanguage` describes what's on screen rather than
+    /// what the generator would produce if asked right now.
+    private(set) var descriptionLanguage: String?
     private(set) var isGeneratingDescription = false
     private(set) var imageState: ImageLoadState = .loading
+
+    /// The language the description is in when that *isn't* the app's own —
+    /// which happens when the on-device model can't write in the app's
+    /// language and `DishDescriptionGenerating` fell back (see its
+    /// `language`/`appLanguage`). `DishDetailView` turns this into a note
+    /// above the description, because a Catalan screen holding a Spanish
+    /// paragraph is otherwise indistinguishable from a bug.
+    var fallbackLanguage: String? {
+        guard let descriptionLanguage,
+              descriptionLanguage != appLanguage else { return nil }
+        return descriptionLanguage
+    }
+
+    /// The language the app itself is being read in, so the view can name
+    /// `fallbackLanguage` in it rather than in the fallback language.
+    var appLanguage: String { descriptionGenerator.appLanguage }
 
     private let dish: Dish
     private let store: DishAIContentStoring
@@ -83,6 +103,7 @@ final class DishDetailViewModel {
            existing.descriptionPromptVersion == currentPromptVersion,
            existing.descriptionLanguage == currentLanguage {
             descriptionText = existing.descriptionText
+            descriptionLanguage = existing.descriptionLanguage
             return
         }
 
@@ -100,6 +121,7 @@ final class DishDetailViewModel {
         // version.
         let description = await descriptionResult
         descriptionText = description ?? existing?.descriptionText
+        descriptionLanguage = description != nil ? currentLanguage : existing?.descriptionLanguage
         isGeneratingDescription = false
 
         let image = await imageResult

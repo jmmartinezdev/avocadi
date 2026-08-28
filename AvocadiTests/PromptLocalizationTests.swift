@@ -105,6 +105,32 @@ struct PromptLocalizationTests {
         }
     }
 
+    /// The prompt lookup moved from `String(localized:)` to an explicit
+    /// per-language bundle so a reader of one language can be handed a prompt
+    /// in another. That rewrite had to leave the text every existing language
+    /// resolves to byte-identical — otherwise every cached description in
+    /// those languages is silently stale, and `promptVersion` should have been
+    /// bumped. This is what says it didn't change.
+    @Test func perLanguagePromptLookupReturnsTheSameTextAsBefore() {
+        let generator = FoundationModelsDishDescriptionGenerator()
+        typealias Key = FoundationModelsDishDescriptionGenerator.PromptKey
+
+        #expect(generator.prompt(Key.dishLabel, in: "es") == "Plato: %@")
+        #expect(generator.prompt(Key.dishLabel, in: "it") == "Piatto: %@")
+        #expect(generator.prompt(Key.dishLabel, in: "ca") == "Plat: %@")
+
+        #expect(generator.prompt(Key.instructions, in: "es") == """
+            Eres un asistente culinario conciso. Dado el nombre de un plato, \
+            escribe una descripción breve y apetitosa de 1 o 2 frases en \
+            español. No te limites a repetir el nombre del plato.
+            """)
+
+        // The development region ships no .strings of its own, so the key is
+        // the source string and must come back untouched.
+        #expect(generator.prompt(Key.dishLabel, in: "en") == Key.dishLabel)
+        #expect(generator.prompt(Key.instructions, in: "en") == Key.instructions)
+    }
+
     private func widgetBundle() throws -> Bundle {
         let path = try #require(
             Bundle.main.builtInPlugInsURL?

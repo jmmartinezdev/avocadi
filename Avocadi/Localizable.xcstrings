@@ -46,6 +46,29 @@
           }
         }
       }
+    },
+    "The description below is in %@ because Apple Intelligence can't generate text in this app's language." : {
+      "comment" : "Shown above a dish description that had to be generated in a different language than the app's, because the on-device model doesn't support the app's. %@ is the name of the language the description is actually in.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La descripció de sota és en %@ perquè Apple Intelligence no pot generar text en l'idioma de l'app."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La descripción de abajo está en %@ porque Apple Intelligence no puede generar texto en el idioma de la app."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La descrizione qui sotto è in %@ perché Apple Intelligence non può generare testo nella lingua dell'app."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

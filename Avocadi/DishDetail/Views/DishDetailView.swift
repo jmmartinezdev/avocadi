@@ -96,12 +96,37 @@ struct DishDetailView: View {
     @ViewBuilder
     private var descriptionSection: some View {
         if let descriptionText = viewModel?.descriptionText {
-            Text(descriptionText)
-                .font(.body)
-                .foregroundStyle(.secondary)
+            VStack(alignment: .leading, spacing: 8) {
+                if let fallbackLanguage = viewModel?.fallbackLanguage {
+                    fallbackNote(language: fallbackLanguage)
+                }
+                Text(descriptionText)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
         } else if viewModel?.isGeneratingDescription == true {
             descriptionPlaceholder
         }
+    }
+
+    /// Explains a description that isn't in the app's language, which happens
+    /// when Apple Intelligence can't write in it and generation fell back to
+    /// the language the dish names themselves are in. Without this the screen
+    /// just looks broken.
+    ///
+    /// Sits inside the `descriptionText` branch above rather than alongside
+    /// it, so it can never appear over the loading placeholder — there is no
+    /// description to explain yet at that point.
+    private func fallbackNote(language: String) -> some View {
+        // Named in the app's own language ("espanyol" to a Catalan reader),
+        // falling back to the raw code if the system has no name for it.
+        let appLanguage = viewModel?.appLanguage ?? language
+        let languageName = Locale(identifier: appLanguage)
+            .localizedString(forLanguageCode: language) ?? language
+
+        return Text("The description below is in \(languageName) because Apple Intelligence can't generate text in this app's language.")
+            .font(.footnote)
+            .foregroundStyle(.tertiary)
     }
 
     /// Six redacted, shimmering lines of varying width standing in for the
