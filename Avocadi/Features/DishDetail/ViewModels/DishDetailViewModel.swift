@@ -7,6 +7,9 @@
 
 import Foundation
 import Observation
+import OSLog
+
+private let logger = Logger(subsystem: "dev.jmmartinez.Avocadi", category: "DishDetailViewModel")
 
 /// Owns `DishDetailView`'s content: loads cached AI content for `dish` if
 /// it exists, otherwise generates the description and illustration
@@ -175,7 +178,20 @@ final class DishDetailViewModel {
         return try? await descriptionGenerator.generateDescription(for: dish)
     }
 
+    /// Logs rather than swallows the failure. The `nil` return is still the
+    /// contract — `DishImageGenerating` and `ImageLoadState.unavailable` are
+    /// both built around a failed illustration being nothing to show rather
+    /// than something to put in front of the user — but a discarded error is
+    /// how dishes went unillustrated for a long time without anyone being able
+    /// to say which `ImageCreator.Error` was firing.
     private func generateImageIfAvailable() async -> Data? {
-        try? await imageGenerator.generateImage(for: dish)
+        do {
+            return try await imageGenerator.generateImage(for: dish)
+        } catch {
+            logger.error(
+                "Image generation failed for dish \(self.dish.id, privacy: .public): \(String(describing: error), privacy: .public)"
+            )
+            return nil
+        }
     }
 }

@@ -33,6 +33,9 @@ struct SettingsView: View {
 
     @State private var isConfirmingDelete = false
     @State private var isConfirmingClearFavorites = false
+    #if DEBUG
+    @State private var isSweepingDishImages = false
+    #endif
 
     var body: some View {
         Form {
@@ -62,6 +65,27 @@ struct SettingsView: View {
             } footer: {
                 Text("Removes every dish you've marked as a favorite on this device.")
             }
+
+            #if DEBUG
+            // Diagnostic, never shipped — see `DishImageSweep`. `verbatim`
+            // for the same reason as the "Apple Intelligence" header above:
+            // no user ever reads this, so it has no business in the string
+            // catalog in five translations.
+            Section {
+                Button {
+                    isSweepingDishImages = true
+                    Task {
+                        await DishImageSweep.run()
+                        isSweepingDishImages = false
+                    }
+                } label: {
+                    Text(verbatim: isSweepingDishImages ? "Sweeping dish images…" : "Sweep dish images")
+                }
+                .disabled(isSweepingDishImages)
+            } footer: {
+                Text(verbatim: "Generates an image for every dish and logs which ones Image Playground rejects. Takes several minutes; results go to Console, not to the cache.")
+            }
+            #endif
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
