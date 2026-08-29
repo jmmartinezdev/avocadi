@@ -72,4 +72,5 @@ struct DayView: View {
             )
         )
     }
+    .environment(FavoritesStore.preview)
 }

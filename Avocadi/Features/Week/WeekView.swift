@@ -117,4 +117,5 @@ struct WeekView: View {
 
 #Preview {
     WeekView(weekViewModel: .loadFromBundle())
+        .environment(FavoritesStore.preview)
 }

@@ -1,6 +1,146 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add to favorites" : {
+      "comment" : "Accessibility label of the heart button on the dish detail screen, when the dish is not a favorite yet.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afegeix a preferits"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir a favoritos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter aux favoris"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engadir a favoritos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi ai preferiti"
+          }
+        }
+      }
+    },
+    "Clear" : {
+      "comment" : "Confirm button in the dialog that unmarks every favorite dish.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esborra"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella"
+          }
+        }
+      }
+    },
+    "Clear all favorites?" : {
+      "comment" : "Title of the confirmation dialog shown before unmarking every favorite dish.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vols esborrar tots els preferits?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Borrar todos los favoritos?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer tous les favoris ?"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queres borrar todos os favoritos?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vuoi cancellare tutti i preferiti?"
+          }
+        }
+      }
+    },
+    "Clear favorites" : {
+      "comment" : "Button in settings that unmarks every dish marked as a favorite.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esborra els preferits"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar favoritos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer les favoris"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar os favoritos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella i preferiti"
+          }
+        }
+      }
+    },
     "Delete" : {
       "comment" : "Confirm button in the dialog that deletes all generated content.",
       "localizations" : {
@@ -176,6 +316,41 @@
         }
       }
     },
+    "Favorite" : {
+      "comment" : "Accessibility value announced for a dish in the week list that has been marked as a favorite.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorito"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favori"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorito"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferito"
+          }
+        }
+      }
+    },
     "Generated descriptions and images" : {
       "comment" : "Label of the Settings switch that turns Apple Intelligence descriptions and illustrations on or off.",
       "localizations" : {
@@ -211,6 +386,41 @@
         }
       }
     },
+    "Remove from favorites" : {
+      "comment" : "Accessibility label of the heart button on the dish detail screen, when the dish already is a favorite.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina de preferits"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar de favoritos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer des favoris"
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar dos favoritos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi dai preferiti"
+          }
+        }
+      }
+    },
     "Removes every description and illustration saved on this device." : {
       "comment" : "Explains what the delete button in Settings removes.",
       "localizations" : {
@@ -242,6 +452,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elimina tutte le descrizioni e le illustrazioni salvate su questo dispositivo."
+          }
+        }
+      }
+    },
+    "Removes every dish you've marked as a favorite on this device." : {
+      "comment" : "Footer explaining what the button that clears favorites does.",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina tots els plats que has marcat com a preferits en aquest dispositiu."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina todos los platos que has marcado como favoritos en este dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprime tous les plats que vous avez ajoutés aux favoris sur cet appareil."
+          }
+        },
+        "gl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina todos os pratos que marcaches como favoritos neste dispositivo."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuove tutti i piatti che hai contrassegnato come preferiti su questo dispositivo."
           }
         }
       }

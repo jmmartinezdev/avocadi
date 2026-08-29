@@ -17,13 +17,22 @@ import SwiftUI
 /// restores every description and illustration instantly rather than paying
 /// for generation again — so someone who wants the data actually gone needs
 /// the button too.
+///
+/// Clearing favorites is a third thing again, in its own section on purpose.
+/// It would be easy to fold into "Delete generated content" as one "reset the
+/// app" button, and that would be wrong: everything else on this screen is
+/// about what the machine wrote and can write again, while the hearts are the
+/// only thing here the user typed in themselves and the only thing nothing can
+/// regenerate.
 struct SettingsView: View {
     @AppStorage(AIContentSettings.isEnabledKey)
     private var isAIContentEnabled = AIContentSettings.isEnabledDefault
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(FavoritesStore.self) private var favorites
 
     @State private var isConfirmingDelete = false
+    @State private var isConfirmingClearFavorites = false
 
     var body: some View {
         Form {
@@ -45,6 +54,14 @@ struct SettingsView: View {
             } footer: {
                 Text("Removes every description and illustration saved on this device.")
             }
+
+            Section {
+                Button("Clear favorites", role: .destructive) {
+                    isConfirmingClearFavorites = true
+                }
+            } footer: {
+                Text("Removes every dish you've marked as a favorite on this device.")
+            }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
@@ -62,6 +79,15 @@ struct SettingsView: View {
             // adding one would just be a button the popover style doesn't ask
             // for, in five translations.
         }
+        .confirmationDialog(
+            "Clear all favorites?",
+            isPresented: $isConfirmingClearFavorites,
+            titleVisibility: .visible
+        ) {
+            Button("Clear", role: .destructive) {
+                favorites.clear()
+            }
+        }
     }
 
     /// Goes through `SwiftDataDishAIContentStore` rather than the model context
@@ -77,4 +103,5 @@ struct SettingsView: View {
         SettingsView()
     }
     .modelContainer(for: DishAIContent.self, inMemory: true)
+    .environment(FavoritesStore.preview)
 }

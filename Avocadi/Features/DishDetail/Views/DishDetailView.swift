@@ -31,11 +31,14 @@ struct DishDetailView: View {
     let categoryName: String
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(FavoritesStore.self) private var favorites
     @AppStorage(AIContentSettings.isEnabledKey)
     private var isAIContentEnabled = AIContentSettings.isEnabledDefault
     @State private var viewModel: DishDetailViewModel?
 
     private let imageCornerRadius: CGFloat = 16
+
+    private var isFavorite: Bool { favorites.contains(dish.id) }
 
     var body: some View {
         ScrollView {
@@ -61,6 +64,11 @@ struct DishDetailView: View {
         }
         .navigationTitle("Dish")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                favoriteButton
+            }
+        }
         .task {
             // Reading `isAIContentEnabled` once, here, is enough: settings are
             // reachable only from the week view, so this screen is always
@@ -76,6 +84,31 @@ struct DishDetailView: View {
             viewModel = vm
             await vm.load()
         }
+    }
+
+    /// The heart, marking this dish on the week list from now on.
+    ///
+    /// Reads and writes `FavoritesStore` directly rather than going through
+    /// `DishDetailViewModel` like everything else on this screen, because the
+    /// view model doesn't exist until `.task` has run and returns early when
+    /// generated content is switched off. A favorite has nothing to do with
+    /// Apple Intelligence and has to keep working with it off.
+    ///
+    /// `Color.primary`, not a bare `.primary`, for the same reason the week
+    /// view's glass buttons name their colour: inside a button the latter
+    /// resolves to the accent tint and renders the glyph olive.
+    private var favoriteButton: some View {
+        Button {
+            favorites.toggle(dish.id)
+        } label: {
+            Image(systemName: isFavorite ? "heart.fill" : "heart")
+                .contentTransition(.symbolEffect(.replace))
+                .foregroundStyle(isFavorite ? Color.red : Color.primary)
+        }
+        .accessibilityLabel(isFavorite ? "Remove from favorites" : "Add to favorites")
+        // The only control in the app whose tap has no other confirmation —
+        // nothing navigates, nothing loads, one glyph swaps.
+        .sensoryFeedback(.impact(weight: .light), trigger: isFavorite)
     }
 
     /// Each state wraps itself in `imageSquare` rather than the switch being
@@ -195,4 +228,5 @@ struct DishDetailView: View {
         )
     }
     .modelContainer(for: DishAIContent.self, inMemory: true)
+    .environment(FavoritesStore.preview)
 }
